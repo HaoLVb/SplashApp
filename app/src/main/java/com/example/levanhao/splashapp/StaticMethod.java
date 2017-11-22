@@ -70,6 +70,17 @@ public class StaticMethod {
         return formatter.format(Double.parseDouble(price)) + " VNĐ";
     }
 
+    public static String formatPriceGird(String price) {
+        String fomat = "";
+        int cost = Integer.parseInt(price);
+        if ((cost >= 1000) && (cost < 1000000)) {
+            fomat = "" + (cost / 1000) + "k";
+        } else if (cost >= 1000000) {
+            fomat = "" + (cost / 1000000) + "M";
+        } else fomat = "" + cost;
+        return fomat;
+    }
+
     public static boolean isEmpty(List list) {
         return list == null || list.isEmpty();
     }

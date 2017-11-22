@@ -12,7 +12,6 @@ public class HandlerManager {
         this.mainHomeHandler = null;
         this.mainHandler = null;
         this.loginHandler = null;
-        this.allFragmentHandler = null;
         this.detailHandler = null;
         this.commentHandler = null;
         this.userInfoHandler = null;
@@ -21,10 +20,7 @@ public class HandlerManager {
         this.followedHandler = null;
         this.userListingHandler = null;
         this.categoryHandler = null;
-        this.kidEatHandler = null;
-        this.kidWearHandler = null;
-        this.kidSleepHandler = null;
-        this.kidShowerHandler = null;
+        this.categoryProductHandler = null;
     }
 
     public void sendMessage(Handler handler, int what, Object object) {
@@ -66,14 +62,6 @@ public class HandlerManager {
 
     public void setLoginHandler(Handler loginHandler) {
         this.loginHandler = loginHandler;
-    }
-
-    public Handler getAllFragmentHandler() {
-        return allFragmentHandler;
-    }
-
-    public void setAllFragmentHandler(Handler allFragmentHandler) {
-        this.allFragmentHandler = allFragmentHandler;
     }
 
     public Handler getDetailHandler() {
@@ -148,42 +136,17 @@ public class HandlerManager {
         this.categoryHandler = categoryHandler;
     }
 
-    public Handler getKidEatHandler() {
-        return kidEatHandler;
+    public Handler getCategoryProductHandler() {
+        return categoryProductHandler;
     }
 
-    public void setKidEatHandler(Handler kidEatHandler) {
-        this.kidEatHandler = kidEatHandler;
-    }
-
-    public Handler getKidWearHandler() {
-        return kidWearHandler;
-    }
-
-    public void setKidWearHandler(Handler kidWearHandler) {
-        this.kidWearHandler = kidWearHandler;
-    }
-
-    public Handler getKidSleepHandler() {
-        return kidSleepHandler;
-    }
-
-    public void setKidSleepHandler(Handler kidSleepHandler) {
-        this.kidSleepHandler = kidSleepHandler;
-    }
-
-    public Handler getKidShowerHandler() {
-        return kidShowerHandler;
-    }
-
-    public void setKidShowerHandler(Handler kidShowerHandler) {
-        this.kidShowerHandler = kidShowerHandler;
+    public void setCategoryProductHandler(Handler categoryProductHandler) {
+        this.categoryProductHandler = categoryProductHandler;
     }
 
     private Handler mainHomeHandler;
     private Handler mainHandler;
     private Handler loginHandler;
-    private Handler allFragmentHandler;
     private Handler detailHandler;
     private Handler commentHandler;
     private Handler userInfoHandler;
@@ -192,8 +155,6 @@ public class HandlerManager {
     private Handler followedHandler;
     private Handler userListingHandler;
     private Handler categoryHandler;
-    private Handler kidEatHandler;
-    private Handler kidWearHandler;
-    private Handler kidSleepHandler;
-    private Handler kidShowerHandler;
+    private Handler categoryProductHandler;
+
 }

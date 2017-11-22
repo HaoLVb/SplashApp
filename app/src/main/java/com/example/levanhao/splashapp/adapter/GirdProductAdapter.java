@@ -70,7 +70,8 @@ public class GirdProductAdapter extends RecyclerView.Adapter<IViewHolder> {
         holder.title.setText(productItem.getName());
         holder.commentTextview.setText(String.valueOf(productItem.getNumber_comment()));
         holder.likeTextView.setText(String.valueOf(productItem.getLike()));
-        holder.priceTextView.setText((productItem.getPrice() / 1000) + "K");
+//        holder.priceTextView.setText((productItem.getPrice() / 1000) + "K");
+        holder.priceTextView.setText(StaticMethod.formatPriceGird(String.valueOf(productItem.getPrice())));
         Log.e("prhhh", productItem.toString());
         if (productItem.getImages() != null && productItem.getImages().size() > 0) {
 

@@ -136,39 +136,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 timelineIcon.setImageResource(R.drawable.icon_timeline);
                 is_grid = false;
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getAllFragmentHandler(),
-                        StaticVarriable.TIMELINE);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidEatHandler(),
-                        StaticVarriable.TIMELINE);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidWearHandler(),
-                        StaticVarriable.TIMELINE);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidSleepHandler(),
-                        StaticVarriable.TIMELINE);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidShowerHandler(),
+                        LoginActivity.systemManager.getHandlerManager().getCategoryProductHandler(),
                         StaticVarriable.TIMELINE);
             } else {
                 timelineIcon.setImageResource(R.drawable.icon_grid);
                 is_grid = true;
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getAllFragmentHandler(),
-                        StaticVarriable.GIRD);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidEatHandler(),
-                        StaticVarriable.GIRD);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidWearHandler(),
-                        StaticVarriable.GIRD);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidSleepHandler(),
-                        StaticVarriable.GIRD);
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getKidShowerHandler(),
-                        StaticVarriable.GIRD);
 
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getCategoryProductHandler(),
+                        StaticVarriable.GIRD);
             }
             break;
         }

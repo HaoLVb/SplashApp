@@ -69,6 +69,7 @@ public class StaticVarriable {
 
     public static int INDEX = 0;
     public static int COUNT = 8;
+
     public static int BE_AN = 1;
     public static int BE_MAC = 2;
     public static int BE_NGU= 3;
