@@ -55,10 +55,10 @@ public class MainHomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
-        this.homeTablayout = (TabLayout) view.findViewById(R.id.homeTablayout);
-        this.hơmViewpager = (ViewPager) view.findViewById(R.id.hơmViewpager);
-        this.imageViewPager = (ViewPager) view.findViewById(R.id.imageViewPager);
-        this.imageTablayout = (TabLayout) view.findViewById(R.id.imageTablayout);
+        this.homeTablayout = view.findViewById(R.id.homeTablayout);
+        this.hơmViewpager = view.findViewById(R.id.hơmViewpager);
+        this.imageViewPager = view.findViewById(R.id.imageViewPager);
+        this.imageTablayout = view.findViewById(R.id.imageTablayout);
         setupViewPagerImage(imageViewPager);
         setupViewPager(hơmViewpager);
         this.homeTablayout.setupWithViewPager(hơmViewpager);
@@ -111,6 +111,7 @@ public class MainHomeFragment extends Fragment {
 //        adapter.addFrag(BlankFragment.newInstance(), getResources().getString(R.string.kid_hygiene));
 //        adapter.addFrag(BlankFragment.newInstance(), getResources().getString(R.string.strong_kid));
         viewPager.setAdapter(adapter);
+        Log.e("333", "1");
     }
 
     private class MainHomeHandler extends Handler {
