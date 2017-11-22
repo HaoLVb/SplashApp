@@ -450,9 +450,11 @@ public class CategoryProductFragment extends Fragment {
             switch (msg.what) {
             case StaticVarriable.TIMELINE:
                 AnimationFactory.flipTransition(viewFlipper, AnimationFactory.FlipDirection.LEFT_RIGHT);
+                Log.e("223s","1");
                 break;
             case StaticVarriable.GIRD:
                 AnimationFactory.flipTransition(viewFlipper, AnimationFactory.FlipDirection.RIGHT_LEFT);
+                Log.e("223s","2");
                 break;
             case StaticVarriable.NOT_VALIDATE:
                 LoginActivity.systemManager.getHandlerManager().sendMessage(

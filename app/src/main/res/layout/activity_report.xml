@@ -44,9 +44,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_margin="10dp"
             android:orientation="vertical">
 
             <TextView
@@ -61,7 +59,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/background_comment"
                 android:orientation="horizontal">
 
@@ -179,7 +177,8 @@
                     android:layout_marginTop="5dp"
                     android:background="@android:color/transparent"
                     android:gravity="start"
-                    android:textCursorDrawable="@null" />
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/text_size_14" />
             </LinearLayout>
 
             <TextView

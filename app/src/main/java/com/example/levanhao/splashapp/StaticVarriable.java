@@ -54,6 +54,7 @@ public class StaticVarriable {
     public static final int SET_COMMENT = 213;
     public static final int GET_LIST_CATEGORY_PROODUCT = 214;
     public static final int LIKE_PRODUCT = 215;
+    public static final int SEND_REPORT = 216;
     public static final int NOT_VALIDATE = 9995;
 
     //hanlder:

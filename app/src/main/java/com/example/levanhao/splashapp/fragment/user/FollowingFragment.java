@@ -62,7 +62,7 @@ public class FollowingFragment extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_follow, container, false);
         followingHandler = new FollowingHandler();
-        LoginActivity.systemManager.getHandlerManager().setFollowHandler(followingHandler);
+        LoginActivity.systemManager.getHandlerManager().setFollowingHandler(followingHandler);
         init();
         LoginActivity.requestManager.getFollowing(userId, MainActivity.token, String.valueOf(0), String.valueOf(20), followingHandler);
         return view;

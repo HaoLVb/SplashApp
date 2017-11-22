@@ -21,6 +21,7 @@ public class HandlerManager {
         this.userListingHandler = null;
         this.categoryHandler = null;
         this.categoryProductHandler = null;
+        this.reportHandler = null;
     }
 
     public void sendMessage(Handler handler, int what, Object object) {
@@ -96,12 +97,20 @@ public class HandlerManager {
         this.favoriteHandler = favoriteHandler;
     }
 
-    public Handler getFollowHandler() {
+    public Handler getFollowingHandler() {
         return followingHandler;
     }
 
-    public void setFollowHandler(Handler followingHandler) {
+    public void setFollowingHandler(Handler followingHandler) {
         this.followingHandler = followingHandler;
+    }
+
+    public Handler getReportHandler() {
+        return reportHandler;
+    }
+
+    public void setReportHandler(Handler reportHandler) {
+        this.reportHandler = reportHandler;
     }
 
     public Handler getUserListingHandler() {
@@ -120,14 +129,6 @@ public class HandlerManager {
         this.followedHandler = followedHandler;
     }
 
-    public Handler getFollowingHandler() {
-        return followingHandler;
-    }
-
-    public void setFollowingHandler(Handler followingHandler) {
-        this.followingHandler = followingHandler;
-    }
-
     public Handler getCategoryHandler() {
         return categoryHandler;
     }
@@ -144,6 +145,7 @@ public class HandlerManager {
         this.categoryProductHandler = categoryProductHandler;
     }
 
+
     private Handler mainHomeHandler;
     private Handler mainHandler;
     private Handler loginHandler;
@@ -156,5 +158,6 @@ public class HandlerManager {
     private Handler userListingHandler;
     private Handler categoryHandler;
     private Handler categoryProductHandler;
+    private Handler reportHandler;
 
 }

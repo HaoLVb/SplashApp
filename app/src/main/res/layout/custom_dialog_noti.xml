@@ -1,21 +1,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="280dp"
-    android:layout_height="210dp"
+    android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:background="@drawable/dialog_border"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <ImageView
             android:id="@+id/imDialog"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
+            android:padding="@dimen/dimen_10dp"
             android:src="@drawable/tick_box_icon" />
 
 
@@ -28,36 +29,33 @@
             android:layout_gravity="center"
             android:text="Lỗi"
             android:textAllCaps="false"
-            android:textColor="#000000"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/tv_noti_dialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:gravity="center_horizontal"
             android:maxLines="2"
-            android:textColor="#000000"
-            android:textSize="18sp" />
+            android:text="Thông báo"
+            android:textColor="#565555"
+            android:textSize="14sp" />
 
-
+        <Button
+            android:id="@+id/btn_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="@dimen/dimen_10dp"
+            android:background="@drawable/button_dialog"
+            android:gravity="center"
+            android:text="Đóng"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btn_dialog"
-        android:layout_width="wrap_content"
-        android:layout_height="30dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/button_dialog"
-        android:gravity="center"
-        android:text="Đóng"
-        android:textAllCaps="false"
-        android:textColor="#FFFFFF" />
 
 </RelativeLayout>

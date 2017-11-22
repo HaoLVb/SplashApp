@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.os.Handler;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -45,8 +46,10 @@ public class ViewDialogForNotification {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                dialog.dismiss();
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
             }
-        }, 3000);
+        }, 2000);
     }
 }

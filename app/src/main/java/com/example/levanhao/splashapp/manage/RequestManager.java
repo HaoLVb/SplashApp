@@ -172,6 +172,19 @@ public class RequestManager {
         volleyRequest(url, params, StaticVarriable.LIKE_PRODUCT, handler);
     }
 
+    public void sendReport(String token, int productId, String subject, String details, Handler handler) {
+        String url = StaticVarriable.DOMAIN + "/report_products";
+        Map<String, String> params = new HashMap<>();
+        if (token != null) {
+            params.put("token", token);
+        }
+        params.put("subject", subject);
+        params.put("details", details);
+        params.put("product_id", String.valueOf(productId));
+
+        volleyRequest(url, params, StaticVarriable.SEND_REPORT, handler);
+    }
+
 
     void volleyRequest(String url, Map<String, String> params, final int message, final Handler handler) {
         Log.e("request", url + params.toString());
@@ -349,6 +362,14 @@ public class RequestManager {
                     likeProductMessage.what = StaticVarriable.LIKE_PRODUCT;
                 }
                 handler.sendMessage(likeProductMessage);
+                break;
+            case StaticVarriable.SEND_REPORT:
+                Message reportMessage = handler.obtainMessage();
+                reportMessage.what = code;
+                if (code == 1000) {
+                    reportMessage.what = StaticVarriable.SEND_REPORT;
+                }
+                handler.sendMessage(reportMessage);
                 break;
             default:
                 break;
