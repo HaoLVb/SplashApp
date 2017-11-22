@@ -18,6 +18,7 @@ public class StaticVarriable {
     public static String IMAGE = "IMAGE";
     public static String IMAGE_RETURN = "IMAGE_RETURN";
     public static String CAMERA_ACTIVITY = "CAMERA_ACTIVITY";
+    public static final String ID = "id";
     public static final int SCROLL_TOP = 1;
     public static final int SCROLL_BOTTOM = 2;
     public static final int CAMERA_REQUEST = 1888;
@@ -31,7 +32,7 @@ public class StaticVarriable {
     public static final String EXHIBIT_BOOLEAN = "EXHIBIT_BOOLEAN";
     public static final String SIZE_STRING = "SIZE_STRING";
 
-    public static String DOMAIN = "http://192.168.1.109:9000";
+    public static String DOMAIN = "http://192.168.0.120:9000";
     //code API:
     public static final int ERROR_INTERNET = 203;
     //login

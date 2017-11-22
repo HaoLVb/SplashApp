@@ -1,6 +1,8 @@
 package com.example.levanhao.splashapp.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +14,8 @@ import com.bumptech.glide.Glide;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
+import com.example.levanhao.splashapp.activity.MainActivity;
+import com.example.levanhao.splashapp.activity.UserInfoActivity;
 import com.example.levanhao.splashapp.model.product.CommentItem;
 
 import java.util.ArrayList;
@@ -42,12 +46,22 @@ public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.MyViewHo
         CommentItem commentItem = commentItems.get(position);
         holder.posterName.setText(commentItem.getPoster().getName());
         Glide.with(context)
-                .load(StaticVarriable.DOMAIN + "/" +commentItem.getPoster().getAvatar())
+                .load(StaticVarriable.DOMAIN + "/" + commentItem.getPoster().getAvatar())
                 .placeholder(R.drawable.icon_no_avatar)
                 .error(R.drawable.icon_no_avatar)
                 .into(holder.posterAvatar);
         holder.comment.setText(commentItem.getComment());
 //        holder.time.setText(StaticMethod.getTimerBefore(commentItem.getCreated_at()));
+        holder.posterAvatar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent userIntent = new Intent(context, UserInfoActivity.class);
+                userIntent.putExtra(StaticVarriable.TOKEN, MainActivity.token);
+                userIntent.putExtra(StaticVarriable.USER_ID, commentItem.getPoster().getId());
+                ((Activity) context).overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                context.startActivity(userIntent);
+            }
+        });
 
     }
 

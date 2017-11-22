@@ -39,6 +39,7 @@ public class RequestManager {
         params.put("password", password);
         params.put("phonenumber", phonenumber);
         volleyRequest(url, params, StaticVarriable.LOGIN, handler);
+        Log.e("ff4","1");
     }
 
     public void logout(String token, Handler handler) {
@@ -47,17 +48,6 @@ public class RequestManager {
         params.put("token", token);
         volleyRequest(url, params, StaticVarriable.LOGOUT, handler);
     }
-
-//    public void getListProduct(int index, int count, String token, Handler handler) {
-//        String url = StaticVarriable.DOMAIN + "/get_list_products";
-//        Map<String, String> params = new HashMap<>();
-//        if (token != null) {
-//            params.put("token", token);
-//        }
-//        params.put("index", String.valueOf(index));
-//        params.put("count", String.valueOf(count));
-//        volleyRequest(url, params, StaticVarriable.GET_LIST_PRODUCT, handler);
-//    }
 
     public void getListCategoryProduct(int categoryId, int index, int count, String token, Handler handler) {
         String url = StaticVarriable.DOMAIN + "/get_list_products";
@@ -227,6 +217,7 @@ public class RequestManager {
                     result = jsonObject.getJSONObject("data");
                     loginMessage.obj = result;
                     loginMessage.what = StaticVarriable.LOGIN_SUCCESSFUL;
+                    Log.e("333","1");
                 } else {
                     loginMessage.what = StaticVarriable.LOGIN_FAIL;
                 }

@@ -101,6 +101,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             } else {
                 vloading.setVisibility(View.VISIBLE);
                 LoginActivity.requestManager.login(phoneNumber, password, loginHandler);
+                Log.e("222", "1");
             }
             break;
         case R.id.skipButton:

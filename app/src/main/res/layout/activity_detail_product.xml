@@ -64,7 +64,6 @@
             android:background="@color/background_black"
             android:gravity="center_vertical"
             android:paddingStart="@dimen/dimen_15dp"
-            android:text="Giá: 65,000 VNĐ"
             android:textColor="@color/white"
             android:textSize="@dimen/text_size_15" />
 
@@ -102,6 +101,10 @@
 
     <include
         layout="@layout/view_loading"
+        android:visibility="gone" />
+
+    <include
+        layout="@layout/activity_comment"
         android:visibility="gone" />
 
 </RelativeLayout>

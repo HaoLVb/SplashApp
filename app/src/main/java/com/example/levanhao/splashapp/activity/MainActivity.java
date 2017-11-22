@@ -59,15 +59,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public static void replaceFragment(final Fragment fragment, final int container) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                FragmentTransaction fragmentTransaction = fragmentManager
-                        .beginTransaction();
-                fragmentTransaction.replace(
-                        container, fragment).commit();
-            }
-        }, 0);
+        FragmentTransaction fragmentTransaction = fragmentManager
+                .beginTransaction();
+        fragmentTransaction.replace(
+                container, fragment).commit();
     }
 
     public static void attachFragment(Fragment fragment, int container) {
@@ -612,13 +607,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (StaticMethod.checkIsLogin(this)) {
                 NotificationLogoutDialog dialog = new NotificationLogoutDialog(this, this);
                 dialog.show();
-
             } else {
                 Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(loginIntent);
                 finish();
             }
-
 
             break;
         default:
@@ -628,10 +621,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void changeScreen(Fragment fragment) {
-        final Fragment fragments = fragment;
-        if (fragments != null) {
+        if (fragment != null) {
             mDrawerLayout.closeDrawer(listLayout);
-            replaceFragment(fragments, R.id.mainFragment);
+            replaceFragment(fragment, R.id.mainFragment);
 
         }
     }

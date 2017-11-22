@@ -1,15 +1,12 @@
 package com.example.levanhao.splashapp.adapter;
 
 import android.content.Context;
-import android.os.Handler;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.aspsine.irecyclerview.IViewHolder;
@@ -18,7 +15,6 @@ import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.interfaces.OnItemClickListener;
-import com.example.levanhao.splashapp.interfaces.OnLoadMoreListener;
 import com.example.levanhao.splashapp.model.ProductItem;
 
 import java.util.ArrayList;

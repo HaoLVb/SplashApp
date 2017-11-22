@@ -1,5 +1,6 @@
 package com.example.levanhao.splashapp.fragment.trangchu;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.android.volley.Request;
@@ -28,12 +30,14 @@ import com.aspsine.irecyclerview.OnRefreshListener;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
+import com.example.levanhao.splashapp.activity.CommentActivity;
 import com.example.levanhao.splashapp.activity.DetailProductActivity;
 import com.example.levanhao.splashapp.activity.LoginActivity;
 import com.example.levanhao.splashapp.activity.MainActivity;
 import com.example.levanhao.splashapp.adapter.GirdProductAdapter;
 import com.example.levanhao.splashapp.adapter.ListProductAdapter;
 import com.example.levanhao.splashapp.anim.viewflipper.AnimationFactory;
+import com.example.levanhao.splashapp.interfaces.OnClickViewListener;
 import com.example.levanhao.splashapp.view.customview.ClassicRefreshHeaderView;
 import com.example.levanhao.splashapp.view.customview.DensityUtils;
 import com.example.levanhao.splashapp.view.customview.HidingScrollListener;
@@ -50,7 +54,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CategoryProductFragment extends Fragment {
+public class CategoryProductFragment extends Fragment implements OnClickViewListener {
 
     private LoadMoreFooterView loadMoreListFooterView;
     private LoadMoreFooterView loadMoreGirdFooterView;
@@ -99,7 +103,7 @@ public class CategoryProductFragment extends Fragment {
         viewFlipper = view.findViewById(R.id.viewFlipper);
 
         this.girdProductAdapter = new GirdProductAdapter(context);
-        this.listProductAdapter = new ListProductAdapter(context);
+        this.listProductAdapter = new ListProductAdapter(context, this);
 
 //		this.productRecyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(10), true));
         viewFlipper.setOnClickListener(new View.OnClickListener() {
@@ -220,6 +224,7 @@ public class CategoryProductFragment extends Fragment {
     private Context context;
     private CategoryProductHandler categoryProductHandler;
     private ViewAnimator viewFlipper;
+    private ProductItem productItem;
 
     private void refreshGird() {
         String url = StaticVarriable.DOMAIN + "/get_list_products";
@@ -443,6 +448,26 @@ public class CategoryProductFragment extends Fragment {
         requestQueue.add(postRequest);
     }
 
+    @Override
+    public void onClickView(int type, ProductItem productItem) {
+        this.productItem = productItem;
+        switch (type) {
+        case 1:
+            LoginActivity.requestManager.likeProduct(MainActivity.token, productItem.getId(), categoryProductHandler);
+            LoginActivity.systemManager.getHandlerManager().sendMessage(
+                    LoginActivity.systemManager.getHandlerManager().getMainHandler(),
+                    StaticVarriable.SHOW_LOADING);
+            break;
+        case 2:
+//            Toast.makeText(context, "comment", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(context, CommentActivity.class);
+            intent.putExtra(StaticVarriable.ID, productItem.getId());
+            startActivity(intent);
+            ((Activity) context).overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+            break;
+        }
+    }
+
     private class CategoryProductHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
@@ -450,11 +475,11 @@ public class CategoryProductFragment extends Fragment {
             switch (msg.what) {
             case StaticVarriable.TIMELINE:
                 AnimationFactory.flipTransition(viewFlipper, AnimationFactory.FlipDirection.LEFT_RIGHT);
-                Log.e("223s","1");
+                Log.e("223s", "1");
                 break;
             case StaticVarriable.GIRD:
                 AnimationFactory.flipTransition(viewFlipper, AnimationFactory.FlipDirection.RIGHT_LEFT);
-                Log.e("223s","2");
+                Log.e("223s", "2");
                 break;
             case StaticVarriable.NOT_VALIDATE:
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
@@ -465,6 +490,20 @@ public class CategoryProductFragment extends Fragment {
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
                         LoginActivity.systemManager.getHandlerManager().getMainHandler(),
                         StaticVarriable.ERROR_INTERNET);
+                break;
+            case StaticVarriable.LIKE_PRODUCT:
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getMainHandler(),
+                        StaticVarriable.HIDE_LOADING);
+                if (productItem.isIs_liked()) {
+                    productItem.setIs_liked(false);
+                    productItem.setLike(productItem.getLike()-1);
+                } else {
+                    productItem.setIs_liked(true);
+                    productItem.setLike(productItem.getLike()+1);
+                }
+                listProductAdapter.notifyDataSetChanged();
+
                 break;
             default:
                 break;

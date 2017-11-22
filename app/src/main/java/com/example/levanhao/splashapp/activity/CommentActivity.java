@@ -49,7 +49,7 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         ImageView loadingIcon = (ImageView) findViewById(R.id.imLoad);
         ViewLoading loading = new ViewLoading(loadingViewAnim, loadingIcon);
         loading.createAnim();
-        productId = getIntent().getIntExtra(DetailProductActivity.ID, -1);
+        productId = getIntent().getIntExtra(StaticVarriable.ID, -1);
         init();
         commentHandler = new CommentHandler();
         LoginActivity.systemManager.getHandlerManager().setCommentHandler(commentHandler);

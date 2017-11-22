@@ -44,8 +44,6 @@ import java.util.ArrayList;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class DetailProductActivity extends AppCompatActivity implements View.OnClickListener {
-    public static final String ID = "id";
-
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -76,7 +74,7 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
             break;
         case R.id.commentButton:
             Intent intent = new Intent(DetailProductActivity.this, CommentActivity.class);
-            intent.putExtra(ID, productItem.getId());
+            intent.putExtra(StaticVarriable.ID, productItem.getId());
             startActivity(intent);
             overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
             break;
@@ -259,7 +257,7 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
         listing.setText("Sản phẩm: " + detailProduct.getSeller().getListing());
         categoryText.setText(detailProduct.getCategories().get(0).getName());
         status.setText(detailProduct.getCondition());
-        price.setText(StaticMethod.formatPrice(String.valueOf(detailProduct.getPrice())));
+        price.setText("Giá:  " + StaticMethod.formatPrice(String.valueOf(detailProduct.getPrice())));
         shipFrom.setText(detailProduct.getShips_from());
         weightText.setText(detailProduct.getWeight());
         ArrayList<String> list = detailProduct.getDimension();
@@ -333,8 +331,6 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
                 JSONObject jsonObject = (JSONObject) msg.obj;
                 productItem = new ProductItem(jsonObject);
                 updateViewProductDetail(productItem);
-                Log.e("ahsdha_json", ((JSONObject) msg.obj).toString());
-                Log.e("ahsdha", productItem.getImages().toString());
                 break;
             case StaticVarriable.LIKE_PRODUCT:
                 if (productItem.isIs_liked()) {

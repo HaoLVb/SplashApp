@@ -1,17 +1,12 @@
 package com.example.levanhao.splashapp.adapter;
 
 import android.content.Context;
-import android.os.Handler;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.aspsine.irecyclerview.IViewHolder;
@@ -19,12 +14,11 @@ import com.bumptech.glide.Glide;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
+import com.example.levanhao.splashapp.interfaces.OnClickViewListener;
 import com.example.levanhao.splashapp.interfaces.OnItemClickListener;
-import com.example.levanhao.splashapp.interfaces.OnLoadMoreListener;
 import com.example.levanhao.splashapp.model.ProductItem;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by HaoLV on 11/10/2017.
@@ -34,10 +28,12 @@ public class ListProductAdapter extends RecyclerView.Adapter<IViewHolder> {
 
     private ArrayList<ProductItem> mProductItem;
     private Context context;
+    private OnClickViewListener onClickViewListener;
 
-    public ListProductAdapter(Context context) {
+    public ListProductAdapter(Context context, OnClickViewListener onClickViewListener) {
         this.context = context;
         this.mProductItem = new ArrayList<>();
+        this.onClickViewListener = onClickViewListener;
     }
 
     private OnItemClickListener<ProductItem> mOnItemClickListener;
@@ -109,7 +105,13 @@ public class ListProductAdapter extends RecyclerView.Adapter<IViewHolder> {
         holder.likeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                onClickViewListener.onClickView(1, productItem);
+            }
+        });
+        holder.commentLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickViewListener.onClickView(2, productItem);
             }
         });
 
@@ -132,6 +134,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<IViewHolder> {
         private TextView description;
         private ImageView likeImage;
         private LinearLayout likeLayout;
+        private LinearLayout commentLayout;
 
 
         public ViewHolder(View view) {
@@ -146,6 +149,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<IViewHolder> {
             description = view.findViewById(R.id.description);
             likeImage = view.findViewById(R.id.likeImage);
             likeLayout = view.findViewById(R.id.likeLayout);
+            commentLayout = view.findViewById(R.id.commentLayout);
         }
     }
 }
