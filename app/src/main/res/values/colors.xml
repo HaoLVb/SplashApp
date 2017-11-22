@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#b7baba</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="red">#d8202a</color>
+    <color name="yellow">#f4f738</color>
+    <color name="blue">#2946e7</color>
+    <color name="green">#3ce736</color>
+    <color name="pink">#f750c8</color>
+    <color name="purple">#c422e1</color>
+    <color name="white">#FFFFFF</color>
+    <color name="koi_blue">#1508c9</color>
+    <color name="usui_blue">#a0b1e2</color>
+    <color name="usui_grey">#e2d8d8</color>
+    <color name="black">#1f2021</color>
+    <color name="background_black">#455968</color>
+    <color name="custom_color">#8C000000</color>
+    <color name="toolbar_transparent">#33000000</color>
+    <color name="pager_background">#4D000000</color>
+    <color name="transparent_0">#e1dfdf</color>
+    <color name="transparent_5">#F2FFFFFF</color>
+    <color name="transparent_10">#E6FFFFFF</color>
+    <color name="transparent_15">#D9FFFFFF</color>
+    <color name="transparent_20">#CCFFFFFF</color>
+    <color name="transparent_25">#BFFFFFFF</color>
+    <color name="transparent_30">#B3FFFFFF</color>
+    <color name="transparent_35">#A6FFFFFF</color>
+    <color name="transparent_40">#99FFFFFF</color>
+    <color name="transparent_50">#80FFFFFF</color>
+    <color name="transparent_55">#73FFFFFF</color>
+    <color name="transparent_60">#66FFFFFF</color>
+    <color name="transparent_65">#59FFFFFF</color>
+    <color name="transparent_70">#4DFFFFFF</color>
+    <color name="transparent_75">#40FFFFFF</color>
+    <color name="transparent_80">#33FFFFFF</color>
+    <color name="transparent_85">#26FFFFFF</color>
+    <color name="transparent_90">#1AFFFFFF</color>
+    <color name="transparent_95">#0DFFFFFF</color>
+    <color name="transparent_100">#00FFFFFF</color>
+    <color name="gray">#80000000</color>
+
+    <color name="orange">#FF9900</color>
+
+
+</resources>

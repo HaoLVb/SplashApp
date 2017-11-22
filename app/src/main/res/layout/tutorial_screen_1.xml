@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/tutorial_background"
+    android:id="@+id/screenTutorial1"
+    android:clickable="true">
+    <Button
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:background="@drawable/close_icon"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/btCloseScreenTutorial1"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chào mừng bạn đến với MOKI"
+        android:layout_centerInParent="true"
+        android:id="@+id/tvWelcome"
+        android:textColor="@color/red"
+        android:gravity="center"
+        android:textSize="20sp"/>
+    <ImageView
+        android:layout_width="@android:dimen/notification_large_icon_width"
+        android:layout_height="@android:dimen/notification_large_icon_height"
+        android:src="@drawable/tutorial_swipe"
+        android:layout_above="@+id/tvWelcome"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/imageTutorialSwipe"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lướt ngón tay sang trái hoặc sang phải để chuyển sang danh mục sản phẩm khác"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/tvWelcome"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"/>
+</RelativeLayout>

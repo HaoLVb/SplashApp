@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CameraActivity">
+
+    <SurfaceView
+        android:id="@+id/surfaceView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
+    <Button
+        android:id="@+id/btCloseCamera"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/camera_cancel" />
+
+    <Button
+        android:id="@+id/btRotateCamera"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/camera_front" />
+
+    <Button
+        android:id="@+id/btFlashCamera"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginTop="24dp"
+        android:layout_toLeftOf="@+id/btRotateCamera"
+        android:background="@drawable/camera_flash_off" />
+
+    <RelativeLayout
+        android:id="@+id/relativeBottom"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/red">
+
+        <Button
+            android:id="@+id/btLibCamera"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/camera_lib" />
+
+        <Button
+            android:id="@+id/btCameraVideo"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/camera_video" />
+
+        <Button
+            android:id="@+id/btCameraPhoto"
+            android:layout_width="24dp"
+            android:layout_height="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="48dp"
+            android:layout_toLeftOf="@+id/btCameraVideo"
+            android:background="@drawable/camera_photo" />
+
+        <Switch
+            android:id="@+id/switchCamera"
+            android:layout_width="96dp"
+            android:layout_height="16dp"
+            android:layout_above="@+id/btCameraVideo"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="8dp"
+            android:enabled="false"
+            android:thumb="@drawable/customswitchselector"
+            android:track="@drawable/custom_track" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/relativeBottom"
+        android:background="@color/colorPrimary" />
+
+    <ImageButton
+        android:id="@+id/imageBtTakePhoto"
+        android:layout_width="91dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/camera_photo_btn" />
+
+    <ImageButton
+        android:id="@+id/imageBtTakeVideo"
+        android:layout_width="91dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="0dp"
+        android:background="@drawable/camera_video_btn"
+        android:visibility="gone" />
+</RelativeLayout>

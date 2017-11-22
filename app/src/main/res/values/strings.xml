@@ -1,0 +1,87 @@
+<resources>
+    <string name="app_name">MokiApp</string>
+    <string name="skip">Bỏ qua</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="m_b_o_thanh_to_n">Đảm bảo thanh toán.Giảm thiểu rủi ro lừa đảo</string>
+    <string name="ph_h_p">Phù hợp với thói quen mua bán của mẹ trong thời gian mang thai, nuôi con nhỏ</string>
+    <string name="ti_n_l_i">Tiện lợi - Không lo tìm người vận chuyển, thu tiền, xác nhận đơn hàng</string>
+    <string name="register">Đăng ký</string>
+    <string name="title_activity_login2">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="home">Trang chủ</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="support_center">Trung tâm hỗ trợ</string>
+    <string name="information">Tin tức</string>
+    <string name="favorite_list">Danh sách yêu thích</string>
+    <string name="sell_list">Danh sách bán</string>
+    <string name="buy_list">Danh sách mua</string>
+    <string name="charity">Từ thiện</string>
+    <string name="setup">Thiết lập</string>
+    <string name="about_moki">Giới thiệu MOKI</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="login">Đăng nhập</string>
+    <string name="ch_o_m_ng_b_n_n_trung_t_m_h_tr">Chào mừng bạn đến trung tâm hỗ trợ</string>
+    <string name="t_m_hi_u_c_ch_s_d_ng_moki_v_li_n_h_theo_c_c_k_nh_cskh_d_i_y">Tìm hiểu cách sử dụng MOKI và liên hệ theo các kênh CSKH dưới đây</string>
+    <string name="guide">Hướng dẫn sử dụng MOKI</string>
+    <string name="chat">Chat với bộ phận CSKH</string>
+    <string name="buy">MUA</string>
+    <string name="xem_t_t_c_nh_gi">Xem tất cả đánh giá</string>
+    <string name="mo_ta">Mô tả sản phẩm</string>
+    <string name="t_n_s_n_ph_m_y_u_c_u">Tên sản phẩm (Yêu cầu)</string>
+    <string name="m_t_v_s_n_ph_m_y_u_c_u">Mô tả về sản phẩm (Yêu cầu)</string>
+    <string name="chi_ti_t_s_n_ph_m">Chi tiết sản phẩm</string>
+    <string name="sure">Bạn hãy chắc chắn đọc Các điều khoản sử dụng của MOKI. Chúng tôi không cho phép mua bán những mặt hàng nằm trong danh mục mà pháp luật cấm.</string>
+    <string name="v_n_chuy_n">Vận chuyển</string>
+    <string name="price">Giá</string>
+    <string name="search">Tìm Kiếm</string>
+
+    <string name="all">Tất cả</string>
+    <string name="new_status">Mới</string>
+    <string name="new_detail">Sản phẩm mới 100% nguyên seal chưa qua sử dụng</string>
+
+    <string name="new2_status">Gần như mới</string>
+    <string name="new2_detail">Sản phẩm dung lướt - chất lượng như mới</string>
+
+    <string name="good_status">Tốt</string>
+    <string name="good_detail">Sản phẩm đã qua sử dụng - chất lượng cao</string>
+
+    <string name="good2_status">Khá tốt</string>
+    <string name="good2_detail">Sản phẩm đã qua sử dụng - chất lượng đảm bảo</string>
+
+    <string name="old_status">Cũ</string>
+    <string name="old_detail">Sản phẩm cũ</string>
+    <string name="list">Danh mục</string>
+    <string name="free">Miễn phí</string>
+    <string name="kid_eat">Bé ăn</string>
+    <string name="kid_wear">Bé mặc</string>
+    <string name="kid_sleep">Bé ngủ</string>
+    <string name="kid_bathe">Bé tắm</string>
+    <string name="kid_hygiene">Bé vệ sinh</string>
+    <string name="strong_kid">Bé khỏe - an toàn</string>
+    <string name="size">Kích cỡ</string>
+    <string name="_0_3">0 tháng - 3 tháng</string>
+    <string name="_1">1</string>
+    <string name="_10">10</string>
+    <string name="_11">11</string>
+    <string name="_1_2">1 - 2 tuổi</string>
+    <string name="_10_12">10 kg - 12 kg</string>
+    <string name="_11_12">11 - 12 tuổi</string>
+
+
+</resources>

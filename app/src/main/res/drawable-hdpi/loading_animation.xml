@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animation-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/myprogress"
+    android:oneshot="false">
+    <item android:drawable="@drawable/pr0" android:duration="15" />
+    <item android:drawable="@drawable/pr1" android:duration="15" />
+    <item android:drawable="@drawable/pr2" android:duration="15" />
+    <item android:drawable="@drawable/pr3" android:duration="15" />
+    <item android:drawable="@drawable/pr4" android:duration="15" />
+    <item android:drawable="@drawable/pr5" android:duration="15" />
+    <item android:drawable="@drawable/pr6" android:duration="15" />
+    <item android:drawable="@drawable/pr7" android:duration="15" />
+    <item android:drawable="@drawable/pr8" android:duration="15" />
+    <item android:drawable="@drawable/pr9" android:duration="15" />
+    <item android:drawable="@drawable/pr10" android:duration="15" />
+    <item android:drawable="@drawable/pr11" android:duration="15" />
+    <item android:drawable="@drawable/pr12" android:duration="15" />
+    <item android:drawable="@drawable/pr13" android:duration="15" />
+    <item android:drawable="@drawable/pr14" android:duration="15" />
+    <item android:drawable="@drawable/pr15" android:duration="15" />
+    <item android:drawable="@drawable/pr16" android:duration="15" />
+    <item android:drawable="@drawable/pr17" android:duration="15" />
+    <item android:drawable="@drawable/pr18" android:duration="15" />
+    <item android:drawable="@drawable/pr19" android:duration="15" />
+    <item android:drawable="@drawable/pr20" android:duration="15" />
+    <item android:drawable="@drawable/pr21" android:duration="15" />
+    <item android:drawable="@drawable/pr22" android:duration="15" />
+    <item android:drawable="@drawable/pr23" android:duration="15" />
+    <item android:drawable="@drawable/pr24" android:duration="15" />
+    <item android:drawable="@drawable/pr25" android:duration="15" />
+    <item android:drawable="@drawable/pr26" android:duration="15" />
+    <item android:drawable="@drawable/pr27" android:duration="15" />
+    <item android:drawable="@drawable/pr28" android:duration="15" />
+    <item android:drawable="@drawable/pr29" android:duration="15" />
+    <item android:drawable="@drawable/pr30" android:duration="15" />
+    <item android:drawable="@drawable/pr31" android:duration="15" />
+    <item android:drawable="@drawable/pr32" android:duration="15" />
+</animation-list>

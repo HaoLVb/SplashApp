@@ -1,0 +1,107 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context="com.example.levanhao.splashapp.activity.DetailProductActivity">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="top">
+
+            <ImageView
+                android:id="@+id/backIcon"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:padding="@dimen/dimen_5dp"
+                android:src="@drawable/icon_back" />
+
+            <ImageView
+                android:id="@+id/moreIcon"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:padding="@dimen/dimen_5dp"
+                android:src="@drawable/icon_more" />
+
+            <TextView
+                android:id="@+id/nameProduct"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toEndOf="@+id/backIcon"
+                android:layout_toStartOf="@+id/moreIcon"
+                android:gravity="center"
+                android:textColor="@color/red"
+                android:textSize="18sp" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/red" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/priceLayout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true">
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@color/background_black"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/dimen_15dp"
+            android:text="Giá: 65,000 VNĐ"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_15" />
+
+        <TextView
+            android:layout_width="@dimen/dimen_0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="#f47070"
+            android:gravity="center"
+            android:text="MUA"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_15" />
+
+    </LinearLayout>
+
+
+    <com.ecloud.pulltozoomview.PullToZoomScrollViewEx
+        android:id="@+id/scroll_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/priceLayout"
+        android:layout_below="@id/toolbar">
+
+    </com.ecloud.pulltozoomview.PullToZoomScrollViewEx>
+
+    <include
+        android:id="@+id/viewMore"
+        layout="@layout/view_more"
+        android:visibility="gone" />
+
+    <include
+        android:id="@+id/view_image"
+        layout="@layout/view_image_products"
+        android:visibility="gone" />
+
+    <include
+        layout="@layout/view_loading"
+        android:visibility="gone" />
+
+</RelativeLayout>

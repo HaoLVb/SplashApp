@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:clickable="true"
+    style="@android:style/Theme.Translucent.NoTitleBar"
+    android:background="@drawable/tutorial_background"
+    android:id="@+id/screenTutorial2">
+    <Button
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:background="@drawable/close_icon"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="8dp"
+        android:id="@+id/btCloseScreenTutorial2"/>
+    <Button
+        android:layout_width="@android:dimen/app_icon_size"
+        android:layout_height="@android:dimen/app_icon_size"
+        android:background="@drawable/tutorial_change_viewmode"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="8dp"
+        android:id="@+id/btTutorialChangeViewmod"/>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow_change_view_type"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="96dp"
+        android:layout_marginTop="80dp"
+        android:id="@+id/imageArrowChangeViewType"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nhấn để thay đổi chế độ hiển thị sản phẩm"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/imageArrowChangeViewType"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"/>
+</RelativeLayout>
