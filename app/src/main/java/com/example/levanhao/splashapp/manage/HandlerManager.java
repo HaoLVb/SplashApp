@@ -20,7 +20,6 @@ public class HandlerManager {
         this.followedHandler = null;
         this.userListingHandler = null;
         this.categoryHandler = null;
-        this.categoryProductHandler = null;
         this.reportHandler = null;
 
         this.kidEatHandler = null;
@@ -143,13 +142,6 @@ public class HandlerManager {
         this.categoryHandler = categoryHandler;
     }
 
-    public Handler getCategoryProductHandler() {
-        return categoryProductHandler;
-    }
-
-    public void setCategoryProductHandler(Handler categoryProductHandler) {
-        this.categoryProductHandler = categoryProductHandler;
-    }
 
     public Handler getKidEatHandler() {
         return kidEatHandler;
@@ -202,7 +194,6 @@ public class HandlerManager {
     private Handler followedHandler;
     private Handler userListingHandler;
     private Handler categoryHandler;
-    private Handler categoryProductHandler;
     private Handler reportHandler;
 
     private Handler kidEatHandler;

@@ -95,6 +95,7 @@ public class MainHomeFragment extends Fragment {
         adapter.addFrag(KidWearFragment.newInstance(), getResources().getString(R.string.kid_wear));
         adapter.addFrag(KidSleepFragment.newInstance(), getResources().getString(R.string.kid_sleep));
         adapter.addFrag(KidShowerFragment.newInstance(), getResources().getString(R.string.kid_bathe));
+        viewPager.setOffscreenPageLimit(4);
         viewPager.setAdapter(adapter);
     }
 

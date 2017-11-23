@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 import android.widget.ViewAnimator;
 
 import com.android.volley.Request;
@@ -54,43 +53,34 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class CategoryProductFragment extends Fragment implements OnClickViewListener {
-
+public class KidWearFragment extends Fragment implements OnClickViewListener {
     private LoadMoreFooterView loadMoreListFooterView;
     private LoadMoreFooterView loadMoreGirdFooterView;
+    //    public boolean isLoadMore;
     RequestQueue requestQueue;
-    private static final String ARG_PARAM = "param";
-    private int categoryId;
 
-    public CategoryProductFragment() {
+    public KidWearFragment() {
         // Required empty public constructor
+    }
+
+    public static KidWearFragment newInstance() {
+        return new KidWearFragment();
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            categoryId = getArguments().getInt(ARG_PARAM);
-        }
         this.context = getActivity();
         requestQueue = Volley.newRequestQueue(context);
-        categoryProductHandler = new CategoryProductHandler();
-        LoginActivity.systemManager.getHandlerManager().setCategoryProductHandler(categoryProductHandler);
-    }
-
-    public static CategoryProductFragment newInstance(int param) {
-        CategoryProductFragment fragment = new CategoryProductFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_PARAM, param);
-        fragment.setArguments(args);
-        return fragment;
+        kidWearHandler = new KidWearHandler();
+        LoginActivity.systemManager.getHandlerManager().setKidWearHandler(kidWearHandler);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_category_product, container, false);
+        view = inflater.inflate(R.layout.fragment_kid_eat, container, false);
         this.girdRecyclerView = view.findViewById(R.id.girdRecyclerView);
         this.listRecyclerView = view.findViewById(R.id.listRecyclerView);
 
@@ -126,7 +116,6 @@ public class CategoryProductFragment extends Fragment implements OnClickViewList
         classicRefreshHeaderView1.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, DensityUtils.dip2px(context, 80)));
         girdRecyclerView.setRefreshHeaderView(classicRefreshHeaderView);
         listRecyclerView.setRefreshHeaderView(classicRefreshHeaderView1);
-
         listProductAdapter.setOnItemClickListener(new OnItemClickListener<ProductItem>() {
             @Override
             public void onItemClick(int position, ProductItem productItem, View v) {
@@ -222,9 +211,8 @@ public class CategoryProductFragment extends Fragment implements OnClickViewList
     private GirdProductAdapter girdProductAdapter;
     private ListProductAdapter listProductAdapter;
     private Context context;
-    private CategoryProductHandler categoryProductHandler;
+    private KidWearHandler kidWearHandler;
     private ViewAnimator viewFlipper;
-    private ProductItem productItem;
 
     private void refreshGird() {
         String url = StaticVarriable.DOMAIN + "/get_list_products";
@@ -272,9 +260,7 @@ public class CategoryProductFragment extends Fragment implements OnClickViewList
                 }
                 params.put("index", String.valueOf(StaticVarriable.INDEX));
                 params.put("count", String.valueOf(StaticVarriable.COUNT));
-                if (categoryId != 0) {
-                    params.put("category_id", String.valueOf(categoryId));
-                }
+                params.put("category_id", String.valueOf(StaticVarriable.BE_MAC));
                 return params;
             }
         };
@@ -327,9 +313,7 @@ public class CategoryProductFragment extends Fragment implements OnClickViewList
                 }
                 params.put("index", String.valueOf(girdProductAdapter.getItemCount()));
                 params.put("count", String.valueOf(StaticVarriable.COUNT));
-                if (categoryId != 0) {
-                    params.put("category_id", String.valueOf(categoryId));
-                }
+                params.put("category_id", String.valueOf(StaticVarriable.BE_MAC));
                 return params;
             }
         };
@@ -383,9 +367,7 @@ public class CategoryProductFragment extends Fragment implements OnClickViewList
                 }
                 params.put("index", String.valueOf(StaticVarriable.INDEX));
                 params.put("count", String.valueOf(StaticVarriable.COUNT));
-                if (categoryId != 0) {
-                    params.put("category_id", String.valueOf(categoryId));
-                }
+                params.put("category_id", String.valueOf(StaticVarriable.BE_MAC));
 
                 return params;
             }
@@ -439,47 +421,24 @@ public class CategoryProductFragment extends Fragment implements OnClickViewList
                 }
                 params.put("index", String.valueOf(listProductAdapter.getItemCount()));
                 params.put("count", String.valueOf(StaticVarriable.COUNT));
-                if (categoryId != 0) {
-                    params.put("category_id", String.valueOf(categoryId));
-                }
+                params.put("category_id", String.valueOf(StaticVarriable.BE_MAC));
+
                 return params;
             }
         };
         requestQueue.add(postRequest);
     }
 
-    @Override
-    public void onClickView(int type, ProductItem productItem) {
-        this.productItem = productItem;
-        switch (type) {
-        case 1:
-            LoginActivity.requestManager.likeProduct(MainActivity.token, productItem.getId(), categoryProductHandler);
-            LoginActivity.systemManager.getHandlerManager().sendMessage(
-                    LoginActivity.systemManager.getHandlerManager().getMainHandler(),
-                    StaticVarriable.SHOW_LOADING);
-            break;
-        case 2:
-//            Toast.makeText(context, "comment", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(context, CommentActivity.class);
-            intent.putExtra(StaticVarriable.ID, productItem.getId());
-            startActivity(intent);
-            ((Activity) context).overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
-            break;
-        }
-    }
-
-    private class CategoryProductHandler extends Handler {
+    private class KidWearHandler extends Handler {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             switch (msg.what) {
             case StaticVarriable.TIMELINE:
                 AnimationFactory.flipTransition(viewFlipper, AnimationFactory.FlipDirection.LEFT_RIGHT);
-                Log.e("223s", "1");
                 break;
             case StaticVarriable.GIRD:
                 AnimationFactory.flipTransition(viewFlipper, AnimationFactory.FlipDirection.RIGHT_LEFT);
-                Log.e("223s", "2");
                 break;
             case StaticVarriable.NOT_VALIDATE:
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
@@ -491,24 +450,30 @@ public class CategoryProductFragment extends Fragment implements OnClickViewList
                         LoginActivity.systemManager.getHandlerManager().getMainHandler(),
                         StaticVarriable.ERROR_INTERNET);
                 break;
-            case StaticVarriable.LIKE_PRODUCT:
-                LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getMainHandler(),
-                        StaticVarriable.HIDE_LOADING);
-                if (productItem.isIs_liked()) {
-                    productItem.setIs_liked(false);
-                    productItem.setLike(productItem.getLike()-1);
-                } else {
-                    productItem.setIs_liked(true);
-                    productItem.setLike(productItem.getLike()+1);
-                }
-                listProductAdapter.notifyDataSetChanged();
-
-                break;
             default:
                 break;
             }
         }
     }
 
+    @Override
+    public void onClickView(int type, ProductItem productItem) {
+        this.productItem = productItem;
+        switch (type) {
+        case 1:
+            LoginActivity.requestManager.likeProduct(MainActivity.token, productItem.getId(), kidWearHandler);
+            LoginActivity.systemManager.getHandlerManager().sendMessage(
+                    LoginActivity.systemManager.getHandlerManager().getMainHandler(),
+                    StaticVarriable.SHOW_LOADING);
+            break;
+        case 2:
+            Intent intent = new Intent(context, CommentActivity.class);
+            intent.putExtra(StaticVarriable.ID, productItem.getId());
+            startActivity(intent);
+            ((Activity) context).overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+            break;
+        }
+    }
+
+    private ProductItem productItem;
 }
