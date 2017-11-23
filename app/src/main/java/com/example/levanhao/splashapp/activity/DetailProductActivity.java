@@ -1,5 +1,6 @@
 package com.example.levanhao.splashapp.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -15,6 +16,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -75,7 +77,7 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
         case R.id.commentButton:
             Intent intent = new Intent(DetailProductActivity.this, CommentActivity.class);
             intent.putExtra(StaticVarriable.ID, productItem.getId());
-            startActivity(intent);
+            startActivityForResult(intent, 1);
             overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
             break;
         case R.id.categoryText:
@@ -121,7 +123,6 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_product);
-
         loadViewForCode();
         init();
         deatailHandler = new DeatailHandler();
@@ -129,6 +130,15 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
         productId = getIntent().getIntExtra(StaticVarriable.PRODUCT_ITEM, -1);
         LoginActivity.requestManager.getProductInfo(productId, MainActivity.token, deatailHandler);
         LoginActivity.requestManager.getComment(productId, deatailHandler);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            if (resultCode == Activity.RESULT_CANCELED) {
+                LoginActivity.requestManager.getComment(productId, deatailHandler);
+            }
+        }
     }
 
     private int productId;
@@ -168,6 +178,7 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
     private TextView weightText;
     private TextView sizeText;
     private Button btReport;
+    //
 
     private void init() {
         vloading = findViewById(R.id.layoutLoading);
@@ -358,7 +369,8 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
     }
 
     private void loadComment(JSONArray jsonArray) {
-        for (int i = 0; i < 3; i++) {
+        commentItems.clear();
+        for (int i = jsonArray.length() - 1; i >= jsonArray.length() - 3; i--) {
             try {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                 CommentItem commentItem = new CommentItem(jsonObject);

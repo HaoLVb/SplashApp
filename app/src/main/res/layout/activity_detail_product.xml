@@ -103,8 +103,4 @@
         layout="@layout/view_loading"
         android:visibility="gone" />
 
-    <include
-        layout="@layout/activity_comment"
-        android:visibility="gone" />
-
 </RelativeLayout>

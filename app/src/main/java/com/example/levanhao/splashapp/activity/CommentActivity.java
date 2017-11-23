@@ -1,5 +1,7 @@
 package com.example.levanhao.splashapp.activity;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.os.Message;
@@ -38,7 +40,9 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
+        Intent returnIntent = new Intent();
+        setResult(Activity.RESULT_CANCELED, returnIntent);
+        finish();
         overridePendingTransition(0, R.anim.trans_right_out);
     }
 
@@ -114,10 +118,9 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
         }
     }
 
-
     private void loadComment(JSONArray jsonArray) {
         commentItems.clear();
-        for (int i = 0; i < jsonArray.length(); i++) {
+        for (int i = jsonArray.length() - 1; i >= 0; i--) {
             try {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
                 CommentItem commentItem = new CommentItem(jsonObject);
