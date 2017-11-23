@@ -131,14 +131,38 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 timelineIcon.setImageResource(R.drawable.icon_timeline);
                 is_grid = false;
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getCategoryProductHandler(),
+                        LoginActivity.systemManager.getHandlerManager().getAllFragmentHandler(),
+                        StaticVarriable.TIMELINE);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidEatHandler(),
+                        StaticVarriable.TIMELINE);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidWearHandler(),
+                        StaticVarriable.TIMELINE);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidSleepHandler(),
+                        StaticVarriable.TIMELINE);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidShowerHandler(),
                         StaticVarriable.TIMELINE);
             } else {
                 timelineIcon.setImageResource(R.drawable.icon_grid);
                 is_grid = true;
 
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
-                        LoginActivity.systemManager.getHandlerManager().getCategoryProductHandler(),
+                        LoginActivity.systemManager.getHandlerManager().getAllFragmentHandler(),
+                        StaticVarriable.GIRD);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidEatHandler(),
+                        StaticVarriable.GIRD);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidWearHandler(),
+                        StaticVarriable.GIRD);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidSleepHandler(),
+                        StaticVarriable.GIRD);
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getKidShowerHandler(),
                         StaticVarriable.GIRD);
             }
             break;
@@ -617,7 +641,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         default:
             break;
         }
-
     }
 
     private void changeScreen(Fragment fragment) {
@@ -653,12 +676,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 vloading.setVisibility(View.GONE);
                 break;
             case StaticVarriable.LOGOUT:
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
                 LoginHelper loginHelper = new LoginHelper(MainActivity.this);
                 loginHelper.deleteUser();
                 loginHelper.deleteLogin();
+                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             case StaticVarriable.ERROR_INTERNET:
                 vloading.setVisibility(View.GONE);
@@ -671,8 +694,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case StaticVarriable.HIDE_LOADING:
                 vloading.setVisibility(View.GONE);
                 break;
-
-
             default:
                 break;
             }

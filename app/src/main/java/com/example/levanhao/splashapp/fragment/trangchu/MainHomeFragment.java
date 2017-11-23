@@ -90,11 +90,11 @@ public class MainHomeFragment extends Fragment {
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getChildFragmentManager());
-        adapter.addFrag(CategoryProductFragment.newInstance(0), getResources().getString(R.string.all));
-        adapter.addFrag(CategoryProductFragment.newInstance(StaticVarriable.BE_AN), getResources().getString(R.string.kid_eat));
-        adapter.addFrag(CategoryProductFragment.newInstance(StaticVarriable.BE_MAC), getResources().getString(R.string.kid_wear));
-        adapter.addFrag(CategoryProductFragment.newInstance(StaticVarriable.BE_NGU), getResources().getString(R.string.kid_sleep));
-        adapter.addFrag(CategoryProductFragment.newInstance(StaticVarriable.BE_TAM), getResources().getString(R.string.kid_bathe));
+        adapter.addFrag(AllFragment.newInstance(), getResources().getString(R.string.all));
+        adapter.addFrag(KidEatFragment.newInstance(StaticVarriable.BE_AN), getResources().getString(R.string.kid_eat));
+        adapter.addFrag(KidWearFragment.newInstance(), getResources().getString(R.string.kid_wear));
+        adapter.addFrag(KidSleepFragment.newInstance(), getResources().getString(R.string.kid_sleep));
+        adapter.addFrag(KidShowerFragment.newInstance(), getResources().getString(R.string.kid_bathe));
         viewPager.setAdapter(adapter);
     }
 

@@ -119,9 +119,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             vloading.setVisibility(View.GONE);
             switch (msg.what) {
             case StaticVarriable.LOGIN_SUCCESSFUL:
-                LoginInfo loginInfo = new LoginInfo(phoneNumber, password);
                 LoginHelper loginHelper = new LoginHelper(LoginActivity.this);
                 loginHelper.deleteLogin();
+                LoginInfo loginInfo = new LoginInfo(phoneNumber, password);
                 loginHelper.addUser(loginInfo);
 //               loadData
                 JSONObject user = (JSONObject) msg.obj;
@@ -139,7 +139,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case StaticVarriable.ERROR_INTERNET:
                 break;
-
             default:
                 break;
             }

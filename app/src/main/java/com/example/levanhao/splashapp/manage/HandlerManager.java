@@ -22,6 +22,12 @@ public class HandlerManager {
         this.categoryHandler = null;
         this.categoryProductHandler = null;
         this.reportHandler = null;
+
+        this.kidEatHandler = null;
+        this.kidWearHandler = null;
+        this.kidSleepHandler = null;
+        this.kidShowerHandler = null;
+        this.allFragmentHandler = null;
     }
 
     public void sendMessage(Handler handler, int what, Object object) {
@@ -145,6 +151,45 @@ public class HandlerManager {
         this.categoryProductHandler = categoryProductHandler;
     }
 
+    public Handler getKidEatHandler() {
+        return kidEatHandler;
+    }
+
+    public void setKidEatHandler(Handler kidEatHandler) {
+        this.kidEatHandler = kidEatHandler;
+    }
+
+    public Handler getKidWearHandler() {
+        return kidWearHandler;
+    }
+
+    public void setKidWearHandler(Handler kidWearHandler) {
+        this.kidWearHandler = kidWearHandler;
+    }
+
+    public Handler getKidSleepHandler() {
+        return kidSleepHandler;
+    }
+
+    public void setKidSleepHandler(Handler kidSleepHandler) {
+        this.kidSleepHandler = kidSleepHandler;
+    }
+
+    public Handler getKidShowerHandler() {
+        return kidShowerHandler;
+    }
+
+    public void setKidShowerHandler(Handler kidShowerHandler) {
+        this.kidShowerHandler = kidShowerHandler;
+    }
+
+    public Handler getAllFragmentHandler() {
+        return allFragmentHandler;
+    }
+
+    public void setAllFragmentHandler(Handler allFragmentHandler) {
+        this.allFragmentHandler = allFragmentHandler;
+    }
 
     private Handler mainHomeHandler;
     private Handler mainHandler;
@@ -159,5 +204,11 @@ public class HandlerManager {
     private Handler categoryHandler;
     private Handler categoryProductHandler;
     private Handler reportHandler;
+
+    private Handler kidEatHandler;
+    private Handler kidWearHandler;
+    private Handler kidSleepHandler;
+    private Handler kidShowerHandler;
+    private Handler allFragmentHandler;
 
 }
