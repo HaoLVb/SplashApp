@@ -50,7 +50,7 @@ public class ScrollImageFragment extends Fragment {
 		if (mParam1 == 0) {
 			Glide.with(getActivity()).load("https://moki.vn//files/banner/banner_1497926374_35.png").into(imageView);
 		} else {
-			Glide.with(getActivity()).load("https://moki.vn//files/banner/banner_1507083436_36.png").into(imageView);
+			Glide.with(getActivity()).load("https://moki.vn/files/banner/banner_1510908466_42.jpg").into(imageView);
 		}
 		imageView.setOnClickListener(new View.OnClickListener() {
 			@Override

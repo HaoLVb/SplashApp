@@ -39,7 +39,7 @@ public class RequestManager {
         params.put("password", password);
         params.put("phonenumber", phonenumber);
         volleyRequest(url, params, StaticVarriable.LOGIN, handler);
-        Log.e("ff4","1");
+        Log.e("ff4", "1");
     }
 
     public void logout(String token, Handler handler) {
@@ -175,6 +175,12 @@ public class RequestManager {
         volleyRequest(url, params, StaticVarriable.SEND_REPORT, handler);
     }
 
+    public void getSize(Handler handler) {
+        String url = StaticVarriable.DOMAIN + "/get_list_sizes";
+        Map<String, String> params = new HashMap<>();
+        volleyRequest(url, params, StaticVarriable.GET_SIZE, handler);
+    }
+
 
     void volleyRequest(String url, Map<String, String> params, final int message, final Handler handler) {
         Log.e("request", url + params.toString());
@@ -217,7 +223,7 @@ public class RequestManager {
                     result = jsonObject.getJSONObject("data");
                     loginMessage.obj = result;
                     loginMessage.what = StaticVarriable.LOGIN_SUCCESSFUL;
-                    Log.e("333","1");
+                    Log.e("333", "1");
                 } else {
                     loginMessage.what = StaticVarriable.LOGIN_FAIL;
                 }
@@ -362,6 +368,18 @@ public class RequestManager {
                 }
                 handler.sendMessage(reportMessage);
                 break;
+            case StaticVarriable.GET_SIZE:
+                Message sizeMessage = handler.obtainMessage();
+                sizeMessage.what = code;
+                if (code == 1000) {
+                    JSONArray jsonArray;
+                    jsonArray = jsonObject.getJSONArray("data");
+                    sizeMessage.obj = jsonArray;
+                    sizeMessage.what = StaticVarriable.GET_SIZE;
+                }
+                handler.sendMessage(sizeMessage);
+                break;
+
             default:
                 break;
             }

@@ -27,6 +27,7 @@ public class HandlerManager {
         this.kidSleepHandler = null;
         this.kidShowerHandler = null;
         this.allFragmentHandler = null;
+        this.sizeHandler = null;
     }
 
     public void sendMessage(Handler handler, int what, Object object) {
@@ -183,6 +184,14 @@ public class HandlerManager {
         this.allFragmentHandler = allFragmentHandler;
     }
 
+    public Handler getSizeHandler() {
+        return sizeHandler;
+    }
+
+    public void setSizeHandler(Handler sizeHandler) {
+        this.sizeHandler = sizeHandler;
+    }
+
     private Handler mainHomeHandler;
     private Handler mainHandler;
     private Handler loginHandler;
@@ -201,5 +210,7 @@ public class HandlerManager {
     private Handler kidSleepHandler;
     private Handler kidShowerHandler;
     private Handler allFragmentHandler;
+
+    private Handler sizeHandler;
 
 }

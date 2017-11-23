@@ -9,7 +9,6 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toStartOf="@+id/nextIcon"
         android:text="Mặt hàng"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_15" />
