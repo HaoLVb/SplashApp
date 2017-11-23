@@ -67,7 +67,6 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
     private SizeHandler sizeHandler;
     private SwipeRefreshLayout refreshLayout;
 
-
     private void init() {
         recyclerView = findViewById(R.id.recyclerView);
         this.recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -87,7 +86,7 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view, int position) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra(StaticVarriable.SIZE_STRING, sizeItems.get(position));
+                returnIntent.putExtra(StaticVarriable.SIZE_STRING, sizeItems.get(position).getSize_name());
                 setResult(Activity.RESULT_OK, returnIntent);
                 onBackPressed();
             }

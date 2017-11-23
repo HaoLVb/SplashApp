@@ -64,21 +64,36 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             if (resultCode == Activity.RESULT_OK) {
                 String result = data.getStringExtra(StaticVarriable.STATUS_STRING);
                 statusText.setText(result);
-                statusText.setTextColor(ContextCompat.getColor(this, R.color.black));
+                if (result.equals("Tất cả")) {
+                    statusText.setTextColor(ContextCompat.getColor(this, R.color.red));
+                } else {
+                    statusText.setTextColor(ContextCompat.getColor(this, R.color.black));
+                }
+
             }
             break;
         case StaticVarriable.EXHIBIT_REQUEST:
             if (resultCode == Activity.RESULT_OK) {
                 String result = data.getStringExtra(StaticVarriable.EXHIBIT_STRING);
                 exhibitText.setText(result);
-                exhibitText.setTextColor(ContextCompat.getColor(this, R.color.black));
+                if (result.equals("Tất cả")) {
+                    exhibitText.setTextColor(ContextCompat.getColor(this, R.color.red));
+                } else {
+                    exhibitText.setTextColor(ContextCompat.getColor(this, R.color.black));
+                }
+
             }
             break;
         case StaticVarriable.SIZE_REQUEST:
             if (resultCode == Activity.RESULT_OK) {
                 String result = data.getStringExtra(StaticVarriable.SIZE_STRING);
                 sizeText.setText(result);
-                sizeText.setTextColor(ContextCompat.getColor(this, R.color.black));
+                if (result.equals("Tất cả")) {
+                    sizeText.setTextColor(ContextCompat.getColor(this, R.color.red));
+                } else {
+                    sizeText.setTextColor(ContextCompat.getColor(this, R.color.black));
+                }
+
             }
             break;
         }
