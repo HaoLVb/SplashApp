@@ -32,7 +32,6 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             break;
         case R.id.exhibitLayout:
             Intent exhibitIntent = new Intent(SearchActivity.this, ExhibitActiviy.class);
-            exhibitIntent.putExtra(StaticVarriable.EXHIBIT_BOOLEAN, true);
             startActivityForResult(exhibitIntent, StaticVarriable.EXHIBIT_REQUEST);
             overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
             break;
@@ -40,6 +39,13 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             Intent sizeIntent = new Intent(SearchActivity.this, SizeActivity.class);
             startActivityForResult(sizeIntent, StaticVarriable.SIZE_REQUEST);
             overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+            break;
+        case R.id.brandLayout:
+            Intent brandIntent = new Intent(SearchActivity.this, BrandActivity.class);
+            startActivityForResult(brandIntent, StaticVarriable.BRAND_REQUEST);
+            overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+            break;
+        default:
             break;
         }
     }
@@ -96,17 +102,37 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
 
             }
             break;
+
+        case StaticVarriable.BRAND_REQUEST:
+            if (resultCode == Activity.RESULT_OK) {
+                String result = data.getStringExtra(StaticVarriable.BRAND_STRING);
+                brandText.setText(result);
+                if (result.equals("Tất cả")) {
+                    brandText.setTextColor(ContextCompat.getColor(this, R.color.red));
+                } else {
+                    brandText.setTextColor(ContextCompat.getColor(this, R.color.black));
+                }
+
+            }
+            break;
+        default:
+            break;
         }
     }
 
     private ImageView backIcon;
     private ImageView deleteIcon;
+
     private TextView statusText;
     private LinearLayout statusLayout;
+
     private TextView exhibitText;
     private LinearLayout exhibitLayout;
     private LinearLayout sizeLayout;
     private TextView sizeText;
+
+    private TextView brandText;
+    private LinearLayout brandLayout;
 
     private void init() {
         backIcon = findViewById(R.id.backIcon);
@@ -122,5 +148,9 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         sizeText = findViewById(R.id.sizeText);
         sizeLayout = findViewById(R.id.sizeLayout);
         sizeLayout.setOnClickListener(this);
+
+        brandText = findViewById(R.id.brandText);
+        brandLayout = findViewById(R.id.brandLayout);
+        brandLayout.setOnClickListener(this);
     }
 }

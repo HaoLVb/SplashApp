@@ -181,6 +181,12 @@ public class RequestManager {
         volleyRequest(url, params, StaticVarriable.GET_SIZE, handler);
     }
 
+    public void getBrand(Handler handler) {
+        String url = StaticVarriable.DOMAIN + "/get_list_brands";
+        Map<String, String> params = new HashMap<>();
+        volleyRequest(url, params, StaticVarriable.GET_BRAND, handler);
+    }
+
 
     void volleyRequest(String url, Map<String, String> params, final int message, final Handler handler) {
         Log.e("request", url + params.toString());
@@ -378,6 +384,18 @@ public class RequestManager {
                     sizeMessage.what = StaticVarriable.GET_SIZE;
                 }
                 handler.sendMessage(sizeMessage);
+                break;
+
+            case StaticVarriable.GET_BRAND:
+                Message brandMessage = handler.obtainMessage();
+                brandMessage.what = code;
+                if (code == 1000) {
+                    JSONArray jsonArray;
+                    jsonArray = jsonObject.getJSONArray("data");
+                    brandMessage.obj = jsonArray;
+                    brandMessage.what = StaticVarriable.GET_BRAND;
+                }
+                handler.sendMessage(brandMessage);
                 break;
 
             default:

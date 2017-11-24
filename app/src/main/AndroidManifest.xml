@@ -50,7 +50,8 @@
         <activity android:name=".activity.CameraActivity" />
         <activity android:name=".activity.CommentActivity" />
         <activity android:name=".activity.CategoryActivity" />
-        <activity android:name=".activity.ReportActivity"></activity>
+        <activity android:name=".activity.ReportActivity" />
+        <activity android:name=".activity.BrandActivity"></activity>
     </application>
 
 </manifest>

@@ -27,10 +27,12 @@ public class StaticVarriable {
     public static final int STATUS_REQUEST = 100;
     public static final int EXHIBIT_REQUEST = 101;
     public static final int SIZE_REQUEST = 102;
+    public static final int BRAND_REQUEST = 103;
     public static final String STATUS_STRING = "STATUS_STRING";
     public static final String EXHIBIT_STRING = "EXHIBIT_STRING";
     public static final String EXHIBIT_BOOLEAN = "EXHIBIT_BOOLEAN";
     public static final String SIZE_STRING = "SIZE_STRING";
+    public static final String BRAND_STRING = "BRAND_STRING";
 
     public static String DOMAIN = "http://192.168.0.120:9000";
     //code API:
@@ -57,6 +59,7 @@ public class StaticVarriable {
     public static final int LIKE_PRODUCT = 215;
     public static final int SEND_REPORT = 216;
     public static final int GET_SIZE = 217;
+    public static final int GET_BRAND = 218;
     public static final int NOT_VALIDATE = 9995;
 
     //hanlder:

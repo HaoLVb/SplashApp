@@ -27,7 +27,6 @@ public class ExhibitActiviy extends AppCompatActivity implements View.OnClickLis
             onBackPressed();
             break;
         }
-
     }
 
     @Override
@@ -53,12 +52,13 @@ public class ExhibitActiviy extends AppCompatActivity implements View.OnClickLis
 
     private void initArray() {
         exhibitItems = new ArrayList<>();
-        exhibitItems.add(new ExhibitItem(getResources().getString(R.string.kid_eat), 1));
-        exhibitItems.add(new ExhibitItem(getResources().getString(R.string.kid_wear), 2));
-        exhibitItems.add(new ExhibitItem(getResources().getString(R.string.kid_sleep), 3));
-        exhibitItems.add(new ExhibitItem(getResources().getString(R.string.kid_bathe), 4));
-        exhibitItems.add(new ExhibitItem(getResources().getString(R.string.kid_hygiene), 5));
-        exhibitItems.add(new ExhibitItem(getResources().getString(R.string.strong_kid), 6));
+        exhibitItems.add(new ExhibitItem("Tất cả", 1));
+        exhibitItems.add(new ExhibitItem("Bé ăn", 2));
+        exhibitItems.add(new ExhibitItem("Bé mặc", 3));
+        exhibitItems.add(new ExhibitItem("Bé ngủ", 4));
+        exhibitItems.add(new ExhibitItem("Bé tắm", 5));
+        exhibitItems.add(new ExhibitItem("Bé vệ sinh", 6));
+        exhibitItems.add(new ExhibitItem("Khác", 7));
     }
 
     private void init() {
@@ -73,7 +73,7 @@ public class ExhibitActiviy extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view, int position) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra(StaticVarriable.EXHIBIT_STRING, exhibitItems.get(position));
+                returnIntent.putExtra(StaticVarriable.EXHIBIT_STRING, exhibitItems.get(position).getName());
                 setResult(Activity.RESULT_OK, returnIntent);
                 onBackPressed();
             }

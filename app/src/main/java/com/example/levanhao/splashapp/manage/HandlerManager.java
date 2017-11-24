@@ -27,7 +27,9 @@ public class HandlerManager {
         this.kidSleepHandler = null;
         this.kidShowerHandler = null;
         this.allFragmentHandler = null;
+
         this.sizeHandler = null;
+        this.brandHandler = null;
     }
 
     public void sendMessage(Handler handler, int what, Object object) {
@@ -192,6 +194,14 @@ public class HandlerManager {
         this.sizeHandler = sizeHandler;
     }
 
+    public Handler getBrandHandler() {
+        return brandHandler;
+    }
+
+    public void setBrandHandler(Handler brandHandler) {
+        this.brandHandler = brandHandler;
+    }
+
     private Handler mainHomeHandler;
     private Handler mainHandler;
     private Handler loginHandler;
@@ -212,5 +222,6 @@ public class HandlerManager {
     private Handler allFragmentHandler;
 
     private Handler sizeHandler;
+    private Handler brandHandler;
 
 }

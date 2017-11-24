@@ -1,27 +1,38 @@
 package com.example.levanhao.splashapp.model.product;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 /**
  * Created by thanglv on 8/16/2016.
  */
 public class Brand implements Serializable {
-    private String id;
+    private int id;
     private String brand_name;
 
-    public Brand(String id, String brand_name) {
+    public Brand(int id, String brand_name) {
         this.id = id;
         this.brand_name = brand_name;
+    }
+    public Brand(JSONObject jsonObject){
+        try {
+            this.id=jsonObject.getInt("id");
+            this.brand_name=jsonObject.getString("name");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public Brand() {
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
