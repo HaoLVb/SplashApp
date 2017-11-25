@@ -120,7 +120,6 @@ public class FavoriteFragment extends Fragment {
     }
 
     private void loadData(JSONArray jsonArray) {
-        Log.e("dashdajk", jsonArray.toString());
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -137,8 +136,6 @@ public class FavoriteFragment extends Fragment {
                 productItem.setImages(images);
                 productItem.setPrice(jsonObject.getInt("price"));
                 productItems.add(productItem);
-                Log.e("ádaaa", String.valueOf(productItem.getPrice()));
-                Log.e("favorite4", productItem.toString());
             } catch (JSONException e) {
                 e.printStackTrace();
             }

@@ -146,7 +146,6 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
                         .placeholder(R.drawable.no_image)
                         .error(R.drawable.no_image)
                         .into(imProd);
-                Log.e("shd3", productItem.getImages().get(0).getUrl());
             }
             tvNameProd.setText(productItem.getName());
         }

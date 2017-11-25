@@ -99,7 +99,6 @@ public class CameraActivity extends Activity implements Callback, View.OnClickLi
                     Intent intent = new Intent(CameraActivity.this, SellProductActivity.class);
                     intent.putExtra(StaticVarriable.IMAGE, data);
                     startActivity(intent);
-                    Log.e("12ss33_new", data.toString());
                 } else {
 //                    Intent returnIntent = new Intent();
 //                    returnIntent.putExtra(StaticVarriable.IMAGE_RETURN, data);
@@ -109,7 +108,6 @@ public class CameraActivity extends Activity implements Callback, View.OnClickLi
                     setResult(RESULT_OK, new Intent());
                     finish();
                 }
-                Log.e("123s44", data.toString());
                 finish();
             }
         });

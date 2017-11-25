@@ -80,7 +80,6 @@ public class ProductItem implements Serializable {
 
     public ProductItem(JSONObject jsonObject) {
         try {
-            Log.e("hhassa3", jsonObject.toString());
             this.id = jsonObject.getInt("id");
             this.name = jsonObject.getString("name");
             this.price = jsonObject.getInt("price");

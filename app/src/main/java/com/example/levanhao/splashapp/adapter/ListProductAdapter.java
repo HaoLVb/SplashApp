@@ -2,6 +2,7 @@ package com.example.levanhao.splashapp.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,6 +66,7 @@ public class ListProductAdapter extends RecyclerView.Adapter<IViewHolder> {
     @Override
     public void onBindViewHolder(IViewHolder viewHolder, int position) {
         ProductItem productItem = mProductItem.get(position);
+        Log.e("bbbbc",StaticVarriable.DOMAIN + "/" + productItem.getSeller().getAvatar());
         ViewHolder holder = (ViewHolder) viewHolder;
         Glide.with(context)
                 .load(StaticVarriable.DOMAIN + "/" + productItem.getSeller().getAvatar())

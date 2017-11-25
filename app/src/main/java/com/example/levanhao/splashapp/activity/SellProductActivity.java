@@ -114,9 +114,6 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
         bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
         bitmaps = new ArrayList<>();
         bitmaps.add(bitmap);
-        for (int i = 0; i < bitmaps.size(); i++) {
-            Log.e("gda3", bitmaps.get(i).toString());
-        }
         init();
 
 

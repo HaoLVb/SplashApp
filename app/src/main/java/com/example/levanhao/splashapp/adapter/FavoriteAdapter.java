@@ -43,7 +43,6 @@ public class FavoriteAdapter extends RecyclerView.Adapter<FavoriteAdapter.MyView
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         ProductItem productItem = productItems.get(position);
-        Log.e("skjdak", productItem.toString());
         if (productItem.getImages() != null && productItem.getImages().size() > 0) {
             Glide.with(context)
                     .load(StaticVarriable.DOMAIN + "/" +productItem.getImages().get(0).getUrl())

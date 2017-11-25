@@ -75,7 +75,6 @@ public class ImageViewTouchViewPager extends ViewPager {
 
                         previousPosition = getCurrentItem();
                     } catch (ClassCastException ex) {
-                        Log.e(TAG, "This view pager should have only ImageViewTouch as a children.", ex);
                     }
                 }
             }

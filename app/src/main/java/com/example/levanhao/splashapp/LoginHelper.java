@@ -40,7 +40,6 @@ public class LoginHelper extends SQLiteOpenHelper {
                 + KEY_ID + " integer PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_TOKEN + " TEXT," + AVATAR + " TEXT" + ")";
         sqLiteDatabase.execSQL(sql);
-        Log.e("ga44", sql);
 
 
         String sql2 = "CREATE TABLE IF NOT EXISTS " + TABLE_LOGIN + "("

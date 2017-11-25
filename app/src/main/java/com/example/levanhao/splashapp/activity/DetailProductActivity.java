@@ -256,7 +256,6 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
 
     private void updateViewProductDetail(final ProductItem detailProduct) {
         nameProduct.setText(detailProduct.getName());
-        Log.e("374673", detailProduct.toString());
         Glide.with(this)
                 .load(StaticVarriable.DOMAIN + "/" + detailProduct.getSeller().getAvatar())
                 .placeholder(R.drawable.icon_no_avatar)
@@ -300,7 +299,6 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
 
             @Override
             public void onPageSelected(int position) {
-                Log.e("position ảnh: ", String.valueOf(position));
                 if (position == 0) {
                     imNextImage.setVisibility(View.VISIBLE);
                     imBackImage.setVisibility(View.GONE);

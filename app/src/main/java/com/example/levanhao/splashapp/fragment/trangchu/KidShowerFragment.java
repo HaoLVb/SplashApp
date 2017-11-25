@@ -232,7 +232,6 @@ public class KidShowerFragment extends Fragment implements OnClickViewListener {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                 ProductItem productItem = new ProductItem(jsonObject2);
                                 arrayList.add(productItem);
-                                Log.e("ssasww", productItem.toString());
                             }
                             girdRecyclerView.setRefreshing(false);
                             girdProductAdapter.setList(arrayList);
@@ -285,7 +284,6 @@ public class KidShowerFragment extends Fragment implements OnClickViewListener {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                 ProductItem productItem = new ProductItem(jsonObject2);
                                 arrayList.add(productItem);
-                                Log.e("ssasww", productItem.toString());
                             }
                             if (StaticMethod.isEmpty(arrayList)) {
                                 loadMoreGirdFooterView.setStatus(LoadMoreFooterView.Status.THE_END);
@@ -334,7 +332,6 @@ public class KidShowerFragment extends Fragment implements OnClickViewListener {
                             JSONObject jsonObject = new JSONObject(response);
                             JSONObject jsonObject1 = jsonObject.getJSONObject("data");
                             JSONArray jsonArray = jsonObject1.getJSONArray("products");
-                            Log.e("yyyy", jsonObject.toString());
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                 ProductItem productItem = new ProductItem(jsonObject2);
@@ -354,7 +351,6 @@ public class KidShowerFragment extends Fragment implements OnClickViewListener {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Log.e("ssasww", "fail");
                         listRecyclerView.setRefreshing(false);
                         LoginActivity.systemManager.getHandlerManager().sendMessage(
                                 LoginActivity.systemManager.getHandlerManager().getMainHandler(),
@@ -393,7 +389,6 @@ public class KidShowerFragment extends Fragment implements OnClickViewListener {
                                 JSONObject jsonObject2 = jsonArray.getJSONObject(i);
                                 ProductItem productItem = new ProductItem(jsonObject2);
                                 arrayList.add(productItem);
-                                Log.e("ssasww", productItem.toString());
                             }
                             if (StaticMethod.isEmpty(arrayList)) {
                                 loadMoreListFooterView.setStatus(LoadMoreFooterView.Status.THE_END);

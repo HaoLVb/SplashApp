@@ -39,7 +39,6 @@ public class RequestManager {
         params.put("password", password);
         params.put("phonenumber", phonenumber);
         volleyRequest(url, params, StaticVarriable.LOGIN, handler);
-        Log.e("ff4", "1");
     }
 
     public void logout(String token, Handler handler) {
@@ -105,7 +104,6 @@ public class RequestManager {
         params.put("index", index);
         params.put("count", count);
         volleyRequest(url, params, StaticVarriable.GET_MY_LIKE, handler);
-        Log.e("request", "ok");
     }
 
     public void getFollowing(int userId, String token, String index, String count, Handler handler) {
@@ -118,7 +116,6 @@ public class RequestManager {
         params.put("index", index);
         params.put("count", count);
         volleyRequest(url, params, StaticVarriable.GET_LIST_FOLLOWING, handler);
-        Log.e("GET_LIST_FOLLOWING", "1");
     }
 
     public void getFollowed(int userId, String token, String index, String count, Handler handler) {
@@ -130,7 +127,6 @@ public class RequestManager {
         params.put("user_id", String.valueOf(userId));
         params.put("index", index);
         params.put("count", count);
-        Log.e("okconde", url);
         volleyRequest(url, params, StaticVarriable.GET_LIST_FOLLOWED, handler);
     }
 
@@ -219,7 +215,6 @@ public class RequestManager {
     private void processMessage(JSONObject jsonObject, int message, Handler handler) {
         try {
             int code = jsonObject.getInt("code");
-            Log.e("22c", "" + jsonObject.toString());
             JSONObject result;
             switch (message) {
             case StaticVarriable.LOGIN:
@@ -264,7 +259,6 @@ public class RequestManager {
                     jsonArray = jsonObject.getJSONArray("data");
                     commentMessage.obj = jsonArray;
                     commentMessage.what = StaticVarriable.GET_COMMENT;
-                    Log.e("comment", jsonArray.toString());
                 }
                 handler.sendMessage(commentMessage);
                 break;
@@ -329,7 +323,6 @@ public class RequestManager {
                     jsonArray = jsonObject.getJSONArray("data");
                     follwedMessage.obj = jsonArray;
                     follwedMessage.what = StaticVarriable.GET_LIST_FOLLOWED;
-                    Log.e("okconde", jsonObject.toString());
                 }
                 handler.sendMessage(follwedMessage);
                 break;

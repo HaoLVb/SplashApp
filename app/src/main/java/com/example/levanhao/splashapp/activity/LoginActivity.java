@@ -54,7 +54,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         initViews();
         LoginHelper loginHelper = new LoginHelper(this);
         if (loginHelper.getLogin() != null) {
-            Log.e("hhhh", new LoginHelper(this).getLogin().toString());
             LoginActivity.requestManager.login(loginHelper.getLogin().getPhoneNumber(), loginHelper.getLogin().getPassword(), loginHandler);
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
@@ -101,7 +100,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             } else {
                 vloading.setVisibility(View.VISIBLE);
                 LoginActivity.requestManager.login(phoneNumber, password, loginHandler);
-                Log.e("222", "1");
             }
             break;
         case R.id.skipButton:
@@ -129,7 +127,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //add user information vào db (đảm bảo luôn chỉ có 1 user)
                 loginHelper.deleteUser();
                 loginHelper.addUser(userInformationModel);
-                Log.e("sss2", userInformationModel.toString());
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();

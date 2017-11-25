@@ -56,7 +56,6 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         overridePendingTransition(R.anim.trans_left_in, R.anim.trans_left_out);
         token = getIntent().getStringExtra(StaticVarriable.TOKEN);
         userId = getIntent().getIntExtra(StaticVarriable.USER_ID, -1);
-        Log.e("hhss2", token + "--" + userId);
         userInfoHandler = new UserInfoHandler();
         LoginActivity.systemManager.getHandlerManager().setUserInfoHandler(userInfoHandler);
         LoginActivity.requestManager.getUserInfo(token, userId, userInfoHandler);
@@ -169,7 +168,6 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void updateUI() {
-        Log.e("yyy2", userInfoPage.toString());
         userName.setText(userInfoPage.getUsername());
         Glide.with(this)
                 .load(StaticVarriable.DOMAIN + "/" + userInfoPage.getAvatar())

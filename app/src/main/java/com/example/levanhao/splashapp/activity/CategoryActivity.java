@@ -103,7 +103,6 @@ public class CategoryActivity extends AppCompatActivity {
             for (int index = 0; index < jsonArray.length(); index++) {
                 JSONObject jsonObject = jsonArray.getJSONObject(index);
                 ProductItem productItem = new ProductItem(jsonObject);
-                Log.e("productItem", productItem.toString());
                 productItems.add(productItem);
             }
             girdProductAdapter.setList(productItems);
