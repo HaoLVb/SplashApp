@@ -265,7 +265,11 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
         sellerName.setText(detailProduct.getSeller().getName());
         score.setText("Điểm: " + detailProduct.getSeller().getScore());
         listing.setText("Sản phẩm: " + detailProduct.getSeller().getListing());
-        categoryText.setText(detailProduct.getCategories().get(0).getName());
+        if ((detailProduct.getCategories() != null) && (detailProduct.getCategories().size() > 0)) {
+            categoryText.setBackgroundResource(R.drawable.background_red_textview);
+            categoryText.setText(detailProduct.getCategories().get(0).getName());
+
+        }
         status.setText(detailProduct.getCondition());
         price.setText("Giá:  " + StaticMethod.formatPrice(String.valueOf(detailProduct.getPrice())));
         shipFrom.setText(detailProduct.getShips_from());
@@ -377,7 +381,7 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
                 e.printStackTrace();
             }
         }
-        commentTextview.setText(commentItems.size());
+        commentTextview.setText(jsonArray.length() + " bình luận");
         if (commentItems.size() > 0) {
             commentButton.setText("Xem và viết bình luận");
         } else {

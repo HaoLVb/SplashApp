@@ -1,6 +1,7 @@
 package com.example.levanhao.splashapp.fragment.user;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -11,10 +12,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.aspsine.irecyclerview.IRecyclerView;
+import com.aspsine.irecyclerview.OnRefreshListener;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
+import com.example.levanhao.splashapp.activity.CategoryActivity;
+import com.example.levanhao.splashapp.activity.DetailProductActivity;
 import com.example.levanhao.splashapp.activity.LoginActivity;
+import com.example.levanhao.splashapp.activity.MainActivity;
 import com.example.levanhao.splashapp.adapter.GirdProductAdapter;
+import com.example.levanhao.splashapp.interfaces.OnItemClickListener;
 import com.example.levanhao.splashapp.model.ProductItem;
 
 import org.json.JSONArray;
@@ -70,32 +77,35 @@ public class UserListingFragment extends Fragment {
     }
 
     private void init() {
+        productItems = new ArrayList<>();
         recyclerView = view.findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(context, 2));
         girdProductAdapter = new GirdProductAdapter(context);
-        recyclerView.setAdapter(girdProductAdapter);
-//        this.recyclerView.addOnItemTouchListener(new RecyclerTouchListener(context, this.recyclerView, new RecyclerTouchListener.ClickListener() {
-//            @Override
-//            public void onClick(View view, int position) {
-//                Intent myIntent = new Intent(context, DetailProductActivity.class);
-//                ProductItem productItem = productItems.get(position);
-//                myIntent.putExtra(StaticVarriable.PRODUCT_ITEM, productItem.getId());
-//                startActivity(myIntent);
-//                getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
-//            }
-//
-//            @Override
-//            public void onLongClick(View view, int position) {
-//
-//            }
-//        }));
+        recyclerView.setIAdapter(girdProductAdapter);
+        girdProductAdapter.setOnItemClickListener(new OnItemClickListener<ProductItem>() {
+            @Override
+            public void onItemClick(int position, ProductItem productItem, View v) {
+                Intent myIntent = new Intent(context, DetailProductActivity.class);
+                myIntent.putExtra(StaticVarriable.PRODUCT_ITEM, productItem.getId());
+                startActivity(myIntent);
+                getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+            }
+        });
+        recyclerView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                LoginActivity.requestManager.getUserListing(userId, token, String.valueOf(0), String.valueOf(20), userListingHandler);
+
+            }
+        });
     }
 
     private View view;
-    private RecyclerView recyclerView;
+    private IRecyclerView recyclerView;
     private Context context;
     private GirdProductAdapter girdProductAdapter;
     private UserListingHandler userListingHandler;
+    private ArrayList<ProductItem> productItems;
 
     private class UserListingHandler extends Handler {
         @Override
@@ -106,7 +116,9 @@ public class UserListingFragment extends Fragment {
                 JSONArray jsonArray = (JSONArray) msg.obj;
                 loadData(jsonArray);
                 break;
-
+            case StaticVarriable.ERROR_INTERNET:
+                recyclerView.setRefreshing(false);
+                break;
             default:
                 break;
             }
@@ -114,7 +126,7 @@ public class UserListingFragment extends Fragment {
     }
 
     private void loadData(JSONArray jsonArray) {
-        ArrayList<ProductItem> productItems = new ArrayList<>();
+        productItems.clear();
         for (int i = 0; i < jsonArray.length(); i++) {
             try {
                 JSONObject jsonObject = (JSONObject) jsonArray.get(i);
@@ -123,9 +135,9 @@ public class UserListingFragment extends Fragment {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            girdProductAdapter.setList(productItems);
         }
-        girdProductAdapter.notifyDataSetChanged();
+        recyclerView.setRefreshing(false);
+        girdProductAdapter.setList(productItems);
     }
 
 

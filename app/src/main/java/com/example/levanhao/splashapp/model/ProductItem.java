@@ -89,7 +89,6 @@ public class ProductItem implements Serializable {
             this.number_comment = jsonObject.getInt("number_comment");
             this.seller = new Seller(jsonObject.getJSONObject("seller"));
             JSONArray imageArray = new JSONArray(jsonObject.getString("images"));
-            Log.e("adasa", imageArray.toString());
             this.images = new ArrayList<>();
             for (int i = 0; i < imageArray.length(); i++) {
                 JSONObject object = imageArray.getJSONObject(i);

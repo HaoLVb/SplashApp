@@ -281,9 +281,7 @@
                     android:id="@+id/categoryText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/background_red_textview"
                     android:padding="@dimen/dimen_5dp"
-                    android:text="Bé đi ra ngoài"
                     android:textColor="@color/red"
                     android:textSize="@dimen/text_size_15" />
 

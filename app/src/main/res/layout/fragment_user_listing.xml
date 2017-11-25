@@ -1,12 +1,17 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.levanhao.splashapp.fragment.user.UserListingFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <com.aspsine.irecyclerview.IRecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        app:refreshEnabled="true"
+        app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header">
+
+    </com.aspsine.irecyclerview.IRecyclerView>
 
 </FrameLayout>

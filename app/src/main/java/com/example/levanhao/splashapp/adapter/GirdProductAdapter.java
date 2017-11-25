@@ -90,6 +90,7 @@ public class GirdProductAdapter extends RecyclerView.Adapter<IViewHolder> {
                 if (mOnItemClickListener != null) {
                     mOnItemClickListener.onItemClick(position, item, v);
                 }
+                Log.e("hhđhh", "!");
             }
         });
     }

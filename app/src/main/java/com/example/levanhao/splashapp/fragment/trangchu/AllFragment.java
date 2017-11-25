@@ -147,7 +147,7 @@ public class AllFragment extends Fragment implements OnClickViewListener {
                 }
             }
         });
-
+//
         girdProductAdapter.setOnItemClickListener(new OnItemClickListener<ProductItem>() {
             @Override
             public void onItemClick(int position, ProductItem productItem, View v) {

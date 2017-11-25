@@ -44,9 +44,8 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onBackPressed() {
-        Intent intent = new Intent(UserInfoActivity.this, MainActivity.class);
-        startActivity(intent);
-        overridePendingTransition(R.anim.trans_right_in, R.anim.trans_right_out);
+        super.onBackPressed();
+        overridePendingTransition(0, R.anim.trans_right_out);
     }
 
     @Override

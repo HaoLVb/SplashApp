@@ -225,11 +225,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             navigationItem10 = new NavigationItem(
                     R.drawable.sidemenu_icon_logout_normal, getString(R.string.logout));
             profileTextView.setText(userInformationModel.getUserName());
-            Glide.with(this)
+            Glide.with(MainActivity.this)
                     .load(StaticVarriable.DOMAIN + "/" + userInformationModel.getAvatar())
                     .placeholder(R.drawable.icon_no_avatar)
-                    .error(R.drawable.no_image)
+                    .error(R.drawable.icon_no_avatar)
                     .into(profileImage);
+            Log.e("avartar", StaticVarriable.DOMAIN + "/" + userInformationModel.getAvatar());
         } else {
             navigationItem10 = new NavigationItem(
                     R.drawable.sidemenu_icon_logout_normal, getString(R.string.login));

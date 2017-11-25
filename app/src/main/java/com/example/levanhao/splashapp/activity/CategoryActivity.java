@@ -1,6 +1,7 @@
 package com.example.levanhao.splashapp.activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.os.Message;
@@ -13,14 +14,18 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.aspsine.irecyclerview.IRecyclerView;
+import com.aspsine.irecyclerview.OnRefreshListener;
 import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.GirdProductAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
+import com.example.levanhao.splashapp.interfaces.OnItemClickListener;
 import com.example.levanhao.splashapp.model.ProductItem;
 import com.example.levanhao.splashapp.model.UserInfoPage;
 import com.example.levanhao.splashapp.model.product.Category;
+import com.example.levanhao.splashapp.view.customview.LoadMoreFooterView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -51,7 +56,7 @@ public class CategoryActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         girdProductAdapter = new GirdProductAdapter(this);
-        recyclerView.setAdapter(girdProductAdapter);
+        recyclerView.setIAdapter(girdProductAdapter);
         backIcon = findViewById(R.id.backIcon);
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,6 +66,23 @@ public class CategoryActivity extends AppCompatActivity {
         });
         title = findViewById(R.id.title);
         title.setText(category.getName());
+        girdProductAdapter.setOnItemClickListener(new OnItemClickListener<ProductItem>() {
+            @Override
+            public void onItemClick(int position, ProductItem productItem, View v) {
+                Intent myIntent = new Intent(CategoryActivity.this, DetailProductActivity.class);
+                myIntent.putExtra(StaticVarriable.PRODUCT_ITEM, productItem.getId());
+                startActivity(myIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+            }
+        });
+        recyclerView.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                vloading.setVisibility(View.VISIBLE);
+                LoginActivity.requestManager.getListCategoryProduct(category.getId(), 0, 30, MainActivity.token, categoryHandler);
+
+            }
+        });
     }
 
 
@@ -74,7 +96,7 @@ public class CategoryActivity extends AppCompatActivity {
     private CategoryHandler categoryHandler;
     private View vloading;
     private AnimationDrawable loadingViewAnim = null;
-    private RecyclerView recyclerView;
+    private IRecyclerView recyclerView;
     private GirdProductAdapter girdProductAdapter;
     private TextView title;
     private ImageView backIcon;
@@ -88,6 +110,9 @@ public class CategoryActivity extends AppCompatActivity {
             case StaticVarriable.GET_LIST_CATEGORY_PROODUCT:
                 JSONObject listProducts = (JSONObject) msg.obj;
                 loadData(listProducts);
+                break;
+            case StaticVarriable.ERROR_INTERNET:
+                recyclerView.setRefreshing(false);
                 break;
             default:
                 break;
@@ -105,6 +130,7 @@ public class CategoryActivity extends AppCompatActivity {
                 ProductItem productItem = new ProductItem(jsonObject);
                 productItems.add(productItem);
             }
+            recyclerView.setRefreshing(false);
             girdProductAdapter.setList(productItems);
         } catch (JSONException e) {
             e.printStackTrace();
