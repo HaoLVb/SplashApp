@@ -379,6 +379,7 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
                 e.printStackTrace();
             }
         }
+        commentTextview.setText(commentItems.size());
         if (commentItems.size() > 0) {
             commentButton.setText("Xem và viết bình luận");
         } else {

@@ -34,7 +34,7 @@ public class StaticVarriable {
     public static final String SIZE_STRING = "SIZE_STRING";
     public static final String BRAND_STRING = "BRAND_STRING";
 
-    public static String DOMAIN = "http://192.168.0.120:9000";
+    public static String DOMAIN = "http://192.168.0.102:9000";
     //code API:
     public static final int ERROR_INTERNET = 203;
     //login
