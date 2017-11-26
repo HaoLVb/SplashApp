@@ -83,5 +83,9 @@
     <string name="_10_12">10 kg - 12 kg</string>
     <string name="_11_12">11 - 12 tuổi</string>
 
+    <string name="startup_tutorial_page1">Phù hợp với thói quen mua bán của mẹ\ntrong thời gian mang thai, nuôi con nhỏ</string>
+    <string name="startup_tutorial_page2">Tiện lợi - Không lo tìm người vận chuyển,\nthu tiền, xác nhận đơn hàng.</string>
+    <string name="startup_tutorial_page3">Đảm bảo thanh toán.\nGiảm thiểu rủi ro lừa đảo.</string>
+
 
 </resources>

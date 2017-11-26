@@ -1,0 +1,51 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="5">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="3.2">
+
+        <com.example.levanhao.splashapp.view.customview.tutorial.InfiniteScrollImage
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY" />
+
+        <com.example.levanhao.splashapp.view.customview.tutorial.ImageViewFrame
+            android:id="@+id/ensureImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ensurance_icon" />
+
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.8">
+
+        <TextView
+            android:id="@+id/fouth_page_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|bottom|center_vertical|fill_vertical|center|fill"
+            android:layout_marginBottom="110dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="25dp"
+
+            android:gravity="center_horizontal"
+            android:maxLines="2"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

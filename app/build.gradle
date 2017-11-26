@@ -44,4 +44,5 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.8.0'
     compile 'com.github.Aspsine:IRecyclerView:0.0.5'
     compile 'com.shawnlin:number-picker:2.4.4'
+    compile 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
 }

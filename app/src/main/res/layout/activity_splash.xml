@@ -1,11 +1,89 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/splashContainer"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.example.levanhao.splashapp.activity.SplashActivity">
+    android:layout_height="match_parent">
 
-</FrameLayout>
+    <FrameLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/tutorial_background_white">
+
+        <com.example.levanhao.splashapp.view.customview.tutorial.MotionImage
+            android:id="@+id/firstImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/product_icon3" />
+
+        <com.example.levanhao.splashapp.view.customview.tutorial.MotionImage
+            android:id="@+id/secondImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/product_icon2" />
+
+        <com.example.levanhao.splashapp.view.customview.tutorial.MotionImage
+            android:id="@+id/thirdImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/product_icon5" />
+
+        <com.example.levanhao.splashapp.view.customview.tutorial.MotionImage
+            android:id="@+id/deviceImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tutorial_devicebg2" />
+
+    </FrameLayout>
+
+    <com.example.levanhao.splashapp.view.customview.tutorial.Pager
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <com.example.levanhao.splashapp.view.customview.tutorial.MotionTextView
+                android:id="@+id/second_page_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="45dp"
+                android:layout_marginLeft="@dimen/dimen_10dp"
+                android:gravity="center_horizontal"
+                android:maxLines="2"
+                android:text="aaaaa"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </FrameLayout>
+
+        <com.example.levanhao.splashapp.view.customview.tutorial.PageIndicator
+            android:id="@+id/indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:id="@+id/skip_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/corner_button"
+            android:text="Bỏ qua"
+            android:textColor="#fff"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
