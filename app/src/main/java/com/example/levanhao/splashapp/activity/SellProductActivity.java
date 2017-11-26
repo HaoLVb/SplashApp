@@ -2,9 +2,9 @@ package com.example.levanhao.splashapp.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,17 +14,18 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.example.levanhao.splashapp.App;
 import com.example.levanhao.splashapp.R;
-import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.ImageAdapter;
 import com.example.levanhao.splashapp.model.ExhibitItem;
+
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
             startActivityForResult(cameraIntent, StaticVarriable.CAMERA_REQUEST);
             break;
         case R.id.exhibitLayout:
-            Intent exhibitIntent = new Intent(SellProductActivity.this, ExhibitActiviy.class);
+            Intent exhibitIntent = new Intent(SellProductActivity.this, ListCategoryActiviy.class);
             exhibitIntent.putExtra(StaticVarriable.EXHIBIT_BOOLEAN, false);
             startActivityForResult(exhibitIntent, StaticVarriable.EXHIBIT_REQUEST);
             overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
@@ -53,7 +54,18 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
         case R.id.backIcon:
             onBackPressed();
             break;
+        case R.id.postButton:
+            postProducts();
+            break;
         }
+    }
+
+    private void postProducts() {
+        ArrayList<Integer> ships_from_id = new ArrayList<>();
+        ships_from_id.add(1);
+        ships_from_id.add(2);
+        ships_from_id.add(3);
+        LoginActivity.requestManager.addProduct(MainActivity.token, productName.getText().toString(), Integer.parseInt(priceEditText.getText().toString()), exhibitItem.getId(), productDe.getText().toString(), "Đại hoc Bách Khoa Hà Nội", ships_from_id, condition, sellProductHandler);
     }
 
     private ExhibitItem exhibitItem;
@@ -105,6 +117,8 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
         File file = (File) getIntent().getExtras().get("image");
         files = new ArrayList<>();
         files.add(file);
+        sellProductHandler = new SellProductHandler();
+        LoginActivity.systemManager.getHandlerManager().setSellProductHandler(sellProductHandler);
         init();
     }
 
@@ -117,9 +131,14 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
     private LinearLayout statusLayout;
     private ImageView backIcon;
     private ArrayList<File> files;
+    private String price;
+    private Button postButton;
+    private SellProductHandler sellProductHandler;
 
 
     private void init() {
+        postButton = findViewById(R.id.postButton);
+        postButton.setOnClickListener(this);
         imageRecyclerView = findViewById(R.id.imageRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         imageRecyclerView.setLayoutManager(layoutManager);
@@ -162,5 +181,21 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
-    private String price;
+    private class SellProductHandler extends Handler {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what) {
+            case StaticVarriable.ADD_PRODUCT:
+                JSONObject jsonObject = (JSONObject) msg.obj;
+                Log.e("addproduct", jsonObject.toString());
+                break;
+            case StaticVarriable.ERROR_INTERNET:
+                break;
+            default:
+                break;
+            }
+        }
+    }
+
 }

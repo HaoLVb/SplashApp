@@ -18,7 +18,7 @@ import com.example.levanhao.splashapp.model.ExhibitItem;
 
 import java.util.ArrayList;
 
-public class ExhibitActiviy extends AppCompatActivity implements View.OnClickListener {
+public class ListCategoryActiviy extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
@@ -51,13 +51,13 @@ public class ExhibitActiviy extends AppCompatActivity implements View.OnClickLis
 
     private void initArray() {
         exhibitItems = new ArrayList<>();
-        exhibitItems.add(new ExhibitItem("Tất cả", 1));
-        exhibitItems.add(new ExhibitItem("Bé ăn", 2));
-        exhibitItems.add(new ExhibitItem("Bé mặc", 3));
-        exhibitItems.add(new ExhibitItem("Bé ngủ", 4));
-        exhibitItems.add(new ExhibitItem("Bé tắm", 5));
-        exhibitItems.add(new ExhibitItem("Bé vệ sinh", 6));
-        exhibitItems.add(new ExhibitItem("Khác", 7));
+        exhibitItems.add(new ExhibitItem("Tất cả", 0));
+        exhibitItems.add(new ExhibitItem("Bé ăn", 1));
+        exhibitItems.add(new ExhibitItem("Bé mặc", 2));
+        exhibitItems.add(new ExhibitItem("Bé ngủ", 3));
+        exhibitItems.add(new ExhibitItem("Bé tắm", 4));
+        exhibitItems.add(new ExhibitItem("Bé vệ sinh", 5));
+        exhibitItems.add(new ExhibitItem("Khác", 6));
     }
 
     private void init() {

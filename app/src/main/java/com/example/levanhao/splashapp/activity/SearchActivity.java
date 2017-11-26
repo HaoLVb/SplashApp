@@ -9,7 +9,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.View;
@@ -21,15 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.aspsine.irecyclerview.IRecyclerView;
 import com.aspsine.irecyclerview.OnRefreshListener;
-import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
@@ -37,9 +29,7 @@ import com.example.levanhao.splashapp.adapter.GirdProductAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
 import com.example.levanhao.splashapp.interfaces.OnItemClickListener;
 import com.example.levanhao.splashapp.model.ExhibitItem;
-import com.example.levanhao.splashapp.model.LoginInfo;
 import com.example.levanhao.splashapp.model.ProductItem;
-import com.example.levanhao.splashapp.model.UserInformationModel;
 import com.example.levanhao.splashapp.model.product.Brand;
 import com.example.levanhao.splashapp.model.product.Size;
 import com.shawnlin.numberpicker.NumberPicker;
@@ -48,10 +38,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SearchActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -70,7 +57,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
             overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
             break;
         case R.id.exhibitLayout:
-            Intent exhibitIntent = new Intent(SearchActivity.this, ExhibitActiviy.class);
+            Intent exhibitIntent = new Intent(SearchActivity.this, ListCategoryActiviy.class);
             startActivityForResult(exhibitIntent, StaticVarriable.EXHIBIT_REQUEST);
             overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
             break;
@@ -116,7 +103,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void seachProducts() {
-        LoginActivity.requestManager.searchProducts(/*MainActivity.token, keyword.getText().toString(), exhibitItem.getId(), brand.getId(), size.getId(), min, max, statusText.getText().toString(), 0, 20,*/ searchHandler);
+        LoginActivity.requestManager.searchProducts(MainActivity.token, keyword.getText().toString(), exhibitItem.getId(), brand.getId(), size.getId(), min, max, statusText.getText().toString(), 0, 20, searchHandler);
     }
 
 
@@ -324,8 +311,8 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         recyclerView.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-//                LoginActivity.requestManager.getUserListing(userId, token, String.valueOf(0), String.valueOf(20), userListingHandler);
-
+                vloading.setVisibility(View.VISIBLE);
+                LoginActivity.requestManager.searchProducts(MainActivity.token, keyword.getText().toString(), exhibitItem.getId(), brand.getId(), size.getId(), min, max, statusText.getText().toString(), 0, 20, searchHandler);
             }
         });
 

@@ -61,6 +61,8 @@ public class StaticVarriable {
     public static final int GET_SIZE = 217;
     public static final int GET_BRAND = 218;
     public static final int SEARCH = 219;
+    public static final int ADD_PRODUCT = 220;
+    public static final int GET_LIST_CAMPAIGN_PROODUCT = 221;
     public static final int NOT_VALIDATE = 9995;
 
     //hanlder:
@@ -81,6 +83,5 @@ public class StaticVarriable {
     public static int BE_MAC = 2;
     public static int BE_NGU = 3;
     public static int BE_TAM = 4;
-
 
 }

@@ -30,7 +30,9 @@ public class HandlerManager {
 
         this.sizeHandler = null;
         this.brandHandler = null;
-        this.searchHandler=null;
+        this.searchHandler = null;
+        this.sellProductHandler = null;
+        this.campaignHanlder = null;
     }
 
     public void sendMessage(Handler handler, int what, Object object) {
@@ -211,6 +213,22 @@ public class HandlerManager {
         this.searchHandler = searchHandler;
     }
 
+    public Handler getSellProductHandler() {
+        return sellProductHandler;
+    }
+
+    public void setSellProductHandler(Handler sellProductHandler) {
+        this.sellProductHandler = sellProductHandler;
+    }
+
+    public Handler getCampaignHanlder() {
+        return campaignHanlder;
+    }
+
+    public void setCampaignHanlder(Handler campaignHanlder) {
+        this.campaignHanlder = campaignHanlder;
+    }
+
     private Handler mainHomeHandler;
     private Handler mainHandler;
     private Handler loginHandler;
@@ -233,5 +251,8 @@ public class HandlerManager {
     private Handler sizeHandler;
     private Handler brandHandler;
     private Handler searchHandler;
+    private Handler sellProductHandler;
+    private Handler campaignHanlder;
+
 
 }

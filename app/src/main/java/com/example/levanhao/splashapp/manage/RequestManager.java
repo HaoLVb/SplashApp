@@ -18,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -58,6 +59,18 @@ public class RequestManager {
         params.put("index", String.valueOf(index));
         params.put("count", String.valueOf(count));
         volleyRequest(url, params, StaticVarriable.GET_LIST_CATEGORY_PROODUCT, handler);
+    }
+
+    public void getListCampaignProduct(int campaign_id, int index, int count, String token, Handler handler) {
+        String url = StaticVarriable.DOMAIN + "/get_list_products";
+        Map<String, String> params = new HashMap<>();
+        if (token != null) {
+            params.put("token", token);
+        }
+        params.put("campaign_id", String.valueOf(campaign_id));
+        params.put("index", String.valueOf(index));
+        params.put("count", String.valueOf(count));
+        volleyRequest(url, params, StaticVarriable.GET_LIST_CAMPAIGN_PROODUCT, handler);
     }
 
     public void getProductInfo(int id, String token, Handler handler) {
@@ -158,17 +171,23 @@ public class RequestManager {
         volleyRequest(url, params, StaticVarriable.LIKE_PRODUCT, handler);
     }
 
-    public void sendReport(String token, int productId, String subject, String details, Handler handler) {
+    public void addProduct(String token, String name, int price, int category_id, String described, String ships_from, ArrayList<Integer> ships_from_id, String condition, Handler handler) {
         String url = StaticVarriable.DOMAIN + "/report_products";
         Map<String, String> params = new HashMap<>();
         if (token != null) {
             params.put("token", token);
         }
-        params.put("subject", subject);
-        params.put("details", details);
-        params.put("product_id", String.valueOf(productId));
+        params.put("name", name);
+        params.put("price", String.valueOf(price));
+        params.put("category_id", String.valueOf(category_id));
+        params.put("described", described);
+        params.put("ships_from", ships_from);
 
-        volleyRequest(url, params, StaticVarriable.SEND_REPORT, handler);
+        params.put("ships_from_id", String.valueOf(ships_from_id.get(0)));
+        params.put("ships_from_id", String.valueOf(ships_from_id.get(1)));
+        params.put("ships_from_id", String.valueOf(ships_from_id.get(2)));
+        params.put("condition", condition);
+        volleyRequest(url, params, StaticVarriable.ADD_PRODUCT, handler);
     }
 
     public void getSize(Handler handler) {
@@ -183,39 +202,51 @@ public class RequestManager {
         volleyRequest(url, params, StaticVarriable.GET_BRAND, handler);
     }
 
-    public void searchProducts(/*String token, String keyword, int category_id, int brand_id, int product_size_id, int price_min, int price_max, String condition, int index, int count,*/ Handler handler) {
-        String url = StaticVarriable.DOMAIN + "/search?keyword=sản&index=0&count=5";
+    public void searchProducts(String token, String keyword, int category_id, int brand_id, int product_size_id, int price_min, int price_max, String condition, int index, int count, Handler handler) {
+        String url = StaticVarriable.DOMAIN + "/search";
         Map<String, String> params = new HashMap<>();
-//        if (token != null && token.length() > 0) {
-//            params.put("token", token);
-//        }
-//        if (keyword != null && keyword.length() > 0) {
-//            params.put("keyword", keyword);
-//        }
-//        if (brand_id != 0) {
-//            params.put("brand_id", String.valueOf(brand_id));
-//        }
-//        if (category_id != 0) {
-//            params.put("category_id", String.valueOf(category_id));
-//        }
-//        if (product_size_id != 0) {
-//            params.put("product_size_id", String.valueOf(product_size_id));
-//        }
-//        if (price_min != 0) {
-//            params.put("price_min", String.valueOf(price_min));
-//        }
-//        if (price_max != 0) {
-//            params.put("price_max", String.valueOf(price_max));
-//        }
-//        if (!condition.equals("Tất cả")) {
-//            params.put("condition", condition);
-//        }
-//        params.put("index", String.valueOf(index));
-//        params.put("count", String.valueOf(count));
+        if (token != null && token.length() > 0) {
+            params.put("token", token);
+        }
+        if (keyword != null && keyword.length() > 0) {
+            params.put("keyword", keyword);
+        }
+        if (brand_id != 0) {
+            params.put("brand_id", String.valueOf(brand_id));
+        }
+        if (category_id != 0) {
+            params.put("category_id", String.valueOf(category_id));
+        }
+        if (product_size_id != 0) {
+            params.put("product_size_id", String.valueOf(product_size_id));
+        }
+        if (price_min != 0) {
+            params.put("price_min", String.valueOf(price_min));
+        }
+        if (price_max != 0) {
+            params.put("price_max", String.valueOf(price_max));
+        }
+        if (!condition.equals("Tất cả")) {
+            params.put("condition", condition);
+        }
+        params.put("index", String.valueOf(index));
+        params.put("count", String.valueOf(count));
 
         volleyRequest(url, params, StaticVarriable.SEARCH, handler);
     }
 
+    public void sendReport(String token, int productId, String subject, String details, Handler handler) {
+        String url = StaticVarriable.DOMAIN + "/report_products";
+        Map<String, String> params = new HashMap<>();
+        if (token != null) {
+            params.put("token", token);
+        }
+        params.put("subject", subject);
+        params.put("details", details);
+        params.put("product_id", String.valueOf(productId));
+
+        volleyRequest(url, params, StaticVarriable.SEND_REPORT, handler);
+    }
 
     void volleyRequest(String url, Map<String, String> params, final int message, final Handler handler) {
         Log.e("request", url + params.toString());
@@ -284,6 +315,16 @@ public class RequestManager {
                     categotyMessage.what = StaticVarriable.GET_LIST_CATEGORY_PROODUCT;
                 }
                 handler.sendMessage(categotyMessage);
+                break;
+            case StaticVarriable.GET_LIST_CAMPAIGN_PROODUCT:
+                Message campaignMessage = handler.obtainMessage();
+                campaignMessage.what = code;
+                if (code == 1000) {
+                    result = jsonObject.getJSONObject("data");
+                    campaignMessage.obj = result;
+                    campaignMessage.what = StaticVarriable.GET_LIST_CAMPAIGN_PROODUCT;
+                }
+                handler.sendMessage(campaignMessage);
                 break;
             case StaticVarriable.GET_COMMENT:
                 Message commentMessage = handler.obtainMessage();
@@ -434,6 +475,16 @@ public class RequestManager {
                     searchMessage.what = StaticVarriable.SEARCH;
                 }
                 handler.sendMessage(searchMessage);
+                break;
+            case StaticVarriable.ADD_PRODUCT:
+                Message addProductMessage = handler.obtainMessage();
+                addProductMessage.what = code;
+                if (code == 1000) {
+                    result = jsonObject.getJSONObject("data");
+                    addProductMessage.obj = result;
+                    addProductMessage.what = StaticVarriable.ADD_PRODUCT;
+                }
+                handler.sendMessage(addProductMessage);
                 break;
 
             default:

@@ -581,6 +581,7 @@
                 android:textColor="@color/black" />
 
             <Button
+                android:id="@+id/postButton"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginBottom="@dimen/dimen_30dp"

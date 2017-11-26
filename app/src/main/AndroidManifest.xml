@@ -45,13 +45,14 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.StatusActivity" />
-        <activity android:name=".activity.ExhibitActiviy" />
+        <activity android:name=".activity.ListCategoryActiviy" />
         <activity android:name=".activity.SizeActivity" />
         <activity android:name=".activity.CameraActivity" />
         <activity android:name=".activity.CommentActivity" />
         <activity android:name=".activity.CategoryActivity" />
         <activity android:name=".activity.ReportActivity" />
-        <activity android:name=".activity.BrandActivity"></activity>
+        <activity android:name=".activity.BrandActivity" />
+        <activity android:name=".activity.CampaignActivity"></activity>
     </application>
 
 </manifest>
