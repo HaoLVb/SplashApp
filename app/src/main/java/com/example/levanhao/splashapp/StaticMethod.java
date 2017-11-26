@@ -101,4 +101,7 @@ public class StaticMethod {
         return helper.getUser() != null;
     }
 
+    public static String removeCharAt(String s) {
+        return s.substring(0, 0) + s.substring(1);
+    }
 }

@@ -6,9 +6,6 @@ import android.view.ViewGroup;
 
 import com.github.siyamed.shapeimageview.CircularImageView;
 
-/**
- * Created by HoangNV on 11/15/2017.
- */
 
 public class CircularImageViewFrame extends CircularImageView {
 

@@ -1,9 +1,5 @@
 package com.example.levanhao.splashapp.view.customview.tutorial;
 
-/**
- * Created by HoangNV on 11/15/2017.
- */
-
 public interface OnPageChangeListener {
     void onPageChange(Pager pager);
 

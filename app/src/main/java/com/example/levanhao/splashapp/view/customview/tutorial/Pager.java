@@ -10,9 +10,6 @@ import android.widget.LinearLayout;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-/**
- * Created by HoangNV on 11/15/2017.
- */
 
 public class Pager extends HorizontalScrollView {
     private LinearLayout contents;

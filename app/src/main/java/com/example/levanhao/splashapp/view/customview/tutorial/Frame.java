@@ -1,8 +1,5 @@
 package com.example.levanhao.splashapp.view.customview.tutorial;
 
-/**
- * Created by HoangNV on 11/15/2017.
- */
 
 public class Frame {
     public int height;

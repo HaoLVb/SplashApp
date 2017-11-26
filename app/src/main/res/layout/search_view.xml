@@ -31,8 +31,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginRight="@dimen/dimen_50dp"
+                android:ellipsize="end"
                 android:gravity="center"
-                android:text="Tìm kiếm"
+                android:maxLines="1"
                 android:textColor="@color/red"
                 android:textSize="@dimen/text_size_15" />
 
@@ -59,9 +60,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Không tìm thấy sản phẩm nào ứng với từ khóa tìm kiếm"
-        android:textColor="@color/black"
         android:gravity="center"
         android:maxLines="2"
+        android:text="Không tìm thấy sản phẩm nào ứng với từ khóa tìm kiếm"
+        android:textColor="@color/black"
         android:textSize="@dimen/text_size_15" />
 </RelativeLayout>

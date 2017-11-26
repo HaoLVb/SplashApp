@@ -5,10 +5,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup;
 
-/**
- * Created by HoangNV on 11/15/2017.
- */
-
 public class MotionTextView extends android.support.v7.widget.AppCompatTextView {
 
     private static final int MOTION_TYPE_SLICE = 1;

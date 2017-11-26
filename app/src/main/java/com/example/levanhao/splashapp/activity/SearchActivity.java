@@ -236,6 +236,7 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
     private void init() {
 
         ///màn hình resultSearch:
+        title = findViewById(R.id.title);
         noResult = findViewById(R.id.noResult);
         vloading = findViewById(R.id.layoutLoading);
         ImageView loadingIcon = findViewById(R.id.imLoad);
@@ -364,7 +365,38 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
         recyclerView.setRefreshing(false);
         girdProductAdapter.setList(searchResult);
 //        resultSearch.startAnimation(AnimationUtils.loadAnimation(SearchActivity.this, R.anim.anim_start_view_0x));
+
+        updateUI();
+    }
+
+    private void updateUI() {
         resultSearch.setVisibility(View.VISIBLE);
         noResult.setVisibility(searchResult.size() == 0 ? View.VISIBLE : View.GONE);
+        String searchText = "";
+        if (keyword.getText().toString().length() > 0) {
+            searchText = searchText + "," + keyword.getText().toString();
+        }
+
+        if (exhibitItem.getId() != 0) {
+            searchText = searchText + "," + exhibitItem.getName();
+        }
+        if (brand.getId() != 0) {
+            searchText = searchText + "," + brand.getBrand_name();
+        }
+        if (size.getId() != 0) {
+            searchText = searchText + "," + size.getSize_name();
+        }
+        if (min != 0) {
+            searchText = searchText + "," + StaticMethod.formatPrice(String.valueOf(min)) + " - " + StaticMethod.formatPrice(String.valueOf(max));
+
+        }
+        if (!(statusText.getText().toString()).equals("Tất cả")) {
+            searchText = searchText + "," + statusText.getText().toString();
+        }
+
+        searchText = StaticMethod.removeCharAt(searchText);
+        title.setText(searchText);
+
     }
+
 }

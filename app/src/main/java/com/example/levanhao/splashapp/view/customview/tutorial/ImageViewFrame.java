@@ -4,9 +4,6 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.ViewGroup;
 
-/**
- * Created by HoangNV on 11/15/2017.
- */
 
 public class ImageViewFrame extends android.support.v7.widget.AppCompatImageView {
     Frame frame;

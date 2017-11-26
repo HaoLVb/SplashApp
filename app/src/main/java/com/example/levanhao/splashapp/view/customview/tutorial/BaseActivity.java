@@ -7,10 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.levanhao.splashapp.R;
 
 
-/**
- * Created by HoangNV on 11/16/2017.
- */
-
 public class BaseActivity extends AppCompatActivity {
     public void startActivityFromRight(Intent intent) {
         startActivity(intent);

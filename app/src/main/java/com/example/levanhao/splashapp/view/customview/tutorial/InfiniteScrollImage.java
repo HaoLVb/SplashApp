@@ -5,21 +5,21 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.os.Handler;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 
 import com.example.levanhao.splashapp.R;
 
 
-public class InfiniteScrollImage extends android.support.v7.widget.AppCompatImageView {
+public class InfiniteScrollImage extends AppCompatImageView {
     static int delta = 0;
     private Handler handler = new Handler();
-    private final int interval = 1;
     private Bitmap myBitmap;
-    private Runnable runnable = new C29451();
+    private Runnable runnable = new ScrollRunnable();
 
-    class C29451 implements Runnable {
-        C29451() {
+    class ScrollRunnable implements Runnable {
+        ScrollRunnable() {
         }
 
         public void run() {
@@ -42,7 +42,7 @@ public class InfiniteScrollImage extends android.support.v7.widget.AppCompatImag
         super(context, attrs, defStyle);
         init(context);
     }
-
+    //
     private void init(Context ctx) {
         this.handler.postDelayed(this.runnable, 1);
         DisplayMetrics metrics = getContext().getResources().getDisplayMetrics();

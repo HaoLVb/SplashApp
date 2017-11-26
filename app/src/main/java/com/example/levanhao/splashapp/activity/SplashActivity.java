@@ -54,7 +54,7 @@ public class SplashActivity extends BaseActivity {
     private int devHeight;
     private int devWidth;
     private MotionImage deviceImage;
-    private ImageViewFrame ensureImg;
+    //    private ImageViewFrame ensureImg;
     private CircularImageViewFrame fifthZoomImg;
     private MotionImage firstImg;
     private CircularImageViewFrame firstZoomImg;
@@ -256,6 +256,9 @@ public class SplashActivity extends BaseActivity {
             ed.putBoolean("activity_executed", true);
             ed.commit();
         }
+        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        View fouthPage = layoutInflater.inflate(R.layout.start_up_tutorial_page3, null);
+        View thirdPage = layoutInflater.inflate(R.layout.start_up_tutorial_page2, null);
 
         this.skipButton = findViewById(R.id.skip_button);
         this.skipButton.setOnClickListener(new C29471());
@@ -268,81 +271,87 @@ public class SplashActivity extends BaseActivity {
         this.indicator = findViewById(R.id.indicator);
         this.indicator.setPager(this.scroller);
         final FrameLayout zoomAndMotionLayout = findViewById(R.id.layout);
-        LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         this.deviceImage = findViewById(R.id.deviceImage);
         int device_image_width = this.devWidth - ((int) (((double) this.devWidth) / 1.7d));
         int device_image_height = (int) (((double) device_image_width) * 2.1d);
         ViewGroup.LayoutParams indicatorParams = this.indicator.getLayoutParams();
         indicatorParams.height = this.devHeight / 25;
         this.indicator.setLayoutParams(indicatorParams);
+
+        //page 0:
+        this.zoomFrame = Frame.FrameMake((this.devWidth - device_image_width) / 2, device_image_top_margin, device_image_width, device_image_height);
+        this.deviceImage.setupZoomArea(Frame.FrameMake((-this.devWidth) / 11, -((int) (((double) this.devHeight) / 3.8d)), (int) (((double) this.devWidth) + (((double) this.devWidth) / 5.9d)), (int) (((double) this.devHeight) + (((double) this.devHeight) / 2.25d))), this.zoomFrame);
+        this.firstImg = findViewById(R.id.firstImg);
+        this.firstImg.setupPostion(Frame.FrameMake((int) (((double) (this.zoomFrame.f168x + this.zoomFrame.width)) - (((double) this.zoomFrame.f168x) / BordersPanel.ANCHOR_MAX_WIDTH_RATIO)), this.zoomFrame.f169y - 10, 0, 0), 3.2f);
+        this.firstImg.setLayoutParams(new FrameLayout.LayoutParams(this.zoomFrame.width / 4, this.zoomFrame.width / 4));
+        this.secondImg = findViewById(R.id.secondImg);
+        this.secondImg.setupPostion(Frame.FrameMake(this.zoomFrame.f168x - (this.zoomFrame.f168x / 5), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / BordersPanel.ANCHOR_MAX_WIDTH_RATIO)), 0, 0), 3.2f);
+        this.secondImg.setLayoutParams(new FrameLayout.LayoutParams((int) (((double) this.zoomFrame.width) / 3.5d), (int) (((double) this.zoomFrame.width) / 3.5d)));
+        this.thirdImg = findViewById(R.id.thirdImg);
+        this.thirdImg.setupPostion(Frame.FrameMake((this.zoomFrame.f168x + this.zoomFrame.width) - (this.zoomFrame.f168x / 8), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / PackDetailLayout.PARALLAX_RATIO)), 0, 0), 3.2f);
+        this.thirdImg.setLayoutParams(new FrameLayout.LayoutParams((int) (((double) this.zoomFrame.width) / 4.5d), (int) (((double) this.zoomFrame.width) / 4.5d)));
+        this.iconList.add(this.firstImg);
+        this.iconList.add(this.secondImg);
+        this.iconList.add(this.thirdImg);
+        this.deviceImage.moving((float) this.devWidth);
+
+        //page 1:
+        this.tvSecondPage = findViewById(R.id.second_page_text);
+        this.tvSecondPage.setupPostion(Frame.FrameMake(0, 0, 0, 0), 3.2f);
+        this.tvSecondPage.setVisibility(View.INVISIBLE);
+        this.tvSecondPage.setText(getResources().getString(R.string.startup_tutorial_page1));
+        //page 2:
+        this.tvThirdPage = thirdPage.findViewById(R.id.third_page_text);
+        this.tvThirdPage.setText(getResources().getString(R.string.startup_tutorial_page2));
+        FrameLayout layout = thirdPage.findViewById(R.id.thirdPageLayout);
+        this.thirdPageDeviceImage = thirdPage.findViewById(R.id.thirdPageDeviceImage);
+        this.thirdPageDeviceImage.setFrame(this.zoomFrame);
+        this.productImgScroll = thirdPage.findViewById(R.id.productImageScroll);
+        this.productImgScroll.setX((float) (((double) this.zoomFrame.f168x) + (((double) this.zoomFrame.width) / 12.9d)));
+        this.productImgScroll.setY((float) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / 5.5d)));
+        this.productImgScroll.setOnTouchListener(new C29482());
+        ViewGroup.LayoutParams productImgScrollParams = this.productImgScroll.getLayoutParams();
+        productImgScrollParams.width = (int) (((double) this.zoomFrame.width) - (((double) this.zoomFrame.width) / 7.1d));
+        productImgScrollParams.height = (int) (((double) this.zoomFrame.height) - (((double) this.zoomFrame.height) / 3.14d));
+        this.productImgScroll.setLayoutParams(productImgScrollParams);
+        this.zoomImgSize = device_image_width / 4;
+        this.firstZoomImg = thirdPage.findViewById(R.id.firstZoomIcon);
+        this.firstZoomImg.setFrame(Frame.FrameMake((this.zoomFrame.f168x + this.zoomFrame.width) - (this.zoomFrame.f168x / 5), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / 1.8d)), this.zoomImgSize, this.zoomImgSize));
+        this.secondZoomImg = thirdPage.findViewById(R.id.secondZoomIcon);
+        this.secondZoomImg.setFrame(Frame.FrameMake(this.zoomFrame.f168x - (this.zoomFrame.f168x / 5), this.zoomFrame.f169y + (this.zoomFrame.f168x / 2), this.zoomImgSize, this.zoomImgSize));
+        layout.bringChildToFront(this.secondZoomImg);
+        this.thirdZoomImg = thirdPage.findViewById(R.id.thirdZoomIcon);
+        this.thirdZoomImg.setFrame(Frame.FrameMake((this.zoomFrame.f168x + this.zoomFrame.width) - (this.zoomFrame.f168x / 5), this.zoomFrame.f169y + (this.zoomFrame.f168x / 3), this.zoomImgSize, this.zoomImgSize));
+        layout.bringChildToFront(this.thirdZoomImg);
+        this.fouthZoomImg = thirdPage.findViewById(R.id.fouthZoomIcon);
+        this.fouthZoomImg.setFrame(Frame.FrameMake((int) (((double) this.zoomFrame.f168x) + (((double) this.zoomFrame.width) / 2.2d)), (int) (((double) this.zoomFrame.f169y) - (((double) this.zoomImgSize) / 2.2d)), this.zoomImgSize, this.zoomImgSize));
+        this.fifthZoomImg = thirdPage.findViewById(R.id.fifthZoomIcon);
+        this.fifthZoomImg.setFrame(Frame.FrameMake((int) (((double) this.zoomFrame.f168x) - (((double) this.zoomFrame.f168x) / 3.5d)), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / PackDetailLayout.PARALLAX_RATIO)), this.zoomImgSize, this.zoomImgSize));
+        layout.bringChildToFront(this.fifthZoomImg);
+        this.zoomingListImg.add(this.firstZoomImg);
+        this.zoomingListImg.add(this.secondZoomImg);
+        this.zoomingListImg.add(this.thirdZoomImg);
+        this.zoomingListImg.add(this.fouthZoomImg);
+        this.zoomingListImg.add(this.fifthZoomImg);
+        this.isStoppedZooming = true;
+        autoScrollProductList();
+        //page3 :
+        this.tvFourthPage = fouthPage.findViewById(R.id.fouth_page_text);
+        this.tvFourthPage.setText(getResources().getString(R.string.startup_tutorial_page3));
+//                int ensureImgWidth = (int) (((double) this.devWidth) / 3.5d);
+//                this.ensureImg = fouthPage.findViewById(R.id.ensureImg);
+//                this.ensureImg.setFrame(Frame.FrameMake((int) (((double) this.devWidth) - (((double) ensureImgWidth) * PackDetailLayout.PARALLAX_RATIO)), ensureImgWidth / 2, ensureImgWidth, ensureImgWidth));
         for (int i = 0; i < 4; i++) {
             if (i == 0) {
-                this.zoomFrame = Frame.FrameMake((this.devWidth - device_image_width) / 2, device_image_top_margin, device_image_width, device_image_height);
-                this.deviceImage.setupZoomArea(Frame.FrameMake((-this.devWidth) / 11, -((int) (((double) this.devHeight) / 3.8d)), (int) (((double) this.devWidth) + (((double) this.devWidth) / 5.9d)), (int) (((double) this.devHeight) + (((double) this.devHeight) / 2.25d))), this.zoomFrame);
-                this.firstImg = findViewById(R.id.firstImg);
-                this.firstImg.setupPostion(Frame.FrameMake((int) (((double) (this.zoomFrame.f168x + this.zoomFrame.width)) - (((double) this.zoomFrame.f168x) / BordersPanel.ANCHOR_MAX_WIDTH_RATIO)), this.zoomFrame.f169y - 10, 0, 0), 3.2f);
-                this.firstImg.setLayoutParams(new FrameLayout.LayoutParams(this.zoomFrame.width / 4, this.zoomFrame.width / 4));
-                this.secondImg = findViewById(R.id.secondImg);
-                this.secondImg.setupPostion(Frame.FrameMake(this.zoomFrame.f168x - (this.zoomFrame.f168x / 5), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / BordersPanel.ANCHOR_MAX_WIDTH_RATIO)), 0, 0), 3.2f);
-                this.secondImg.setLayoutParams(new FrameLayout.LayoutParams((int) (((double) this.zoomFrame.width) / 3.5d), (int) (((double) this.zoomFrame.width) / 3.5d)));
-                this.thirdImg = findViewById(R.id.thirdImg);
-                this.thirdImg.setupPostion(Frame.FrameMake((this.zoomFrame.f168x + this.zoomFrame.width) - (this.zoomFrame.f168x / 8), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / PackDetailLayout.PARALLAX_RATIO)), 0, 0), 3.2f);
-                this.thirdImg.setLayoutParams(new FrameLayout.LayoutParams((int) (((double) this.zoomFrame.width) / 4.5d), (int) (((double) this.zoomFrame.width) / 4.5d)));
-                this.iconList.add(this.firstImg);
-                this.iconList.add(this.secondImg);
-                this.iconList.add(this.thirdImg);
-                this.deviceImage.moving((float) this.devWidth);
                 this.scroller.addPage(new View(this));
             } else if (i == 1) {
                 this.scroller.addPage(new View(this));
-                this.tvSecondPage = findViewById(R.id.second_page_text);
-                this.tvSecondPage.setupPostion(Frame.FrameMake(0, 0, 0, 0), 3.2f);
-                this.tvSecondPage.setVisibility(View.INVISIBLE);
-                this.tvSecondPage.setText(getResources().getString(R.string.startup_tutorial_page1));
+
             } else if (i == 2) {
-                View thirdPage = layoutInflater.inflate(R.layout.start_up_tutorial_page2, null);
-                this.tvThirdPage = thirdPage.findViewById(R.id.third_page_text);
-                this.tvThirdPage.setText(getResources().getString(R.string.startup_tutorial_page2));
-                FrameLayout layout = thirdPage.findViewById(R.id.thirdPageLayout);
-                this.thirdPageDeviceImage = thirdPage.findViewById(R.id.thirdPageDeviceImage);
-                this.thirdPageDeviceImage.setFrame(this.zoomFrame);
-                this.productImgScroll = thirdPage.findViewById(R.id.productImageScroll);
-                this.productImgScroll.setX((float) (((double) this.zoomFrame.f168x) + (((double) this.zoomFrame.width) / 12.9d)));
-                this.productImgScroll.setY((float) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / 5.5d)));
-                this.productImgScroll.setOnTouchListener(new C29482());
-                ViewGroup.LayoutParams productImgScrollParams = this.productImgScroll.getLayoutParams();
-                productImgScrollParams.width = (int) (((double) this.zoomFrame.width) - (((double) this.zoomFrame.width) / 7.1d));
-                productImgScrollParams.height = (int) (((double) this.zoomFrame.height) - (((double) this.zoomFrame.height) / 3.14d));
-                this.productImgScroll.setLayoutParams(productImgScrollParams);
-                this.zoomImgSize = device_image_width / 4;
-                this.firstZoomImg = thirdPage.findViewById(R.id.firstZoomIcon);
-                this.firstZoomImg.setFrame(Frame.FrameMake((this.zoomFrame.f168x + this.zoomFrame.width) - (this.zoomFrame.f168x / 5), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / 1.8d)), this.zoomImgSize, this.zoomImgSize));
-                this.secondZoomImg = thirdPage.findViewById(R.id.secondZoomIcon);
-                this.secondZoomImg.setFrame(Frame.FrameMake(this.zoomFrame.f168x - (this.zoomFrame.f168x / 5), this.zoomFrame.f169y + (this.zoomFrame.f168x / 2), this.zoomImgSize, this.zoomImgSize));
-                layout.bringChildToFront(this.secondZoomImg);
-                this.thirdZoomImg = thirdPage.findViewById(R.id.thirdZoomIcon);
-                this.thirdZoomImg.setFrame(Frame.FrameMake((this.zoomFrame.f168x + this.zoomFrame.width) - (this.zoomFrame.f168x / 5), this.zoomFrame.f169y + (this.zoomFrame.f168x / 3), this.zoomImgSize, this.zoomImgSize));
-                layout.bringChildToFront(this.thirdZoomImg);
-                this.fouthZoomImg = thirdPage.findViewById(R.id.fouthZoomIcon);
-                this.fouthZoomImg.setFrame(Frame.FrameMake((int) (((double) this.zoomFrame.f168x) + (((double) this.zoomFrame.width) / 2.2d)), (int) (((double) this.zoomFrame.f169y) - (((double) this.zoomImgSize) / 2.2d)), this.zoomImgSize, this.zoomImgSize));
-                this.fifthZoomImg = thirdPage.findViewById(R.id.fifthZoomIcon);
-                this.fifthZoomImg.setFrame(Frame.FrameMake((int) (((double) this.zoomFrame.f168x) - (((double) this.zoomFrame.f168x) / 3.5d)), (int) (((double) this.zoomFrame.f169y) + (((double) this.zoomFrame.height) / PackDetailLayout.PARALLAX_RATIO)), this.zoomImgSize, this.zoomImgSize));
-                layout.bringChildToFront(this.fifthZoomImg);
-                this.zoomingListImg.add(this.firstZoomImg);
-                this.zoomingListImg.add(this.secondZoomImg);
-                this.zoomingListImg.add(this.thirdZoomImg);
-                this.zoomingListImg.add(this.fouthZoomImg);
-                this.zoomingListImg.add(this.fifthZoomImg);
-                this.isStoppedZooming = true;
-                autoScrollProductList();
+
                 this.scroller.addPage(thirdPage);
             } else if (i == 3) {
-                View fouthPage = layoutInflater.inflate(R.layout.start_up_tutorial_page3, null);
-                this.tvFourthPage = fouthPage.findViewById(R.id.fouth_page_text);
-                this.tvFourthPage.setText(getResources().getString(R.string.startup_tutorial_page3));
-                int ensureImgWidth = (int) (((double) this.devWidth) / 3.5d);
-                this.ensureImg = fouthPage.findViewById(R.id.ensureImg);
-                this.ensureImg.setFrame(Frame.FrameMake((int) (((double) this.devWidth) - (((double) ensureImgWidth) * PackDetailLayout.PARALLAX_RATIO)), ensureImgWidth / 2, ensureImgWidth, ensureImgWidth));
+
                 this.scroller.addPage(fouthPage);
             }
         }
@@ -354,7 +363,6 @@ public class SplashActivity extends BaseActivity {
             }
 
             public void pageScroll(int l, int t, int oldl, int oldt) {
-                Log.d("pageScroll: ", l + "-" + t + "-" + oldl + "-" + oldt);
                 int page = (int) Math.floor((double) (l / SplashActivity.this.devWidth));
                 SplashActivity.this.skipButton.setText("Bỏ qua");
                 Iterator it = SplashActivity.this.iconList.iterator();
@@ -392,6 +400,5 @@ public class SplashActivity extends BaseActivity {
         });
 
     }
-
 
 }

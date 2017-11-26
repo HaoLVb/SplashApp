@@ -6,10 +6,6 @@ import android.util.Log;
 import android.view.ViewGroup.LayoutParams;
 
 
-/**
- * Created by HoangNV on 11/15/2017.
- */
-
 
 public class MotionImage extends android.support.v7.widget.AppCompatImageView {
 
