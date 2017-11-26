@@ -26,6 +26,7 @@ import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.ImageAdapter;
 import com.example.levanhao.splashapp.model.ExhibitItem;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class SellProductActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,9 +35,9 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
     public void onClick(View view) {
         switch (view.getId()) {
         case R.id.addImage:
-//            Intent cameraIntent = new Intent(SellProductActivity.this, CameraActivity.class);
-//            cameraIntent.putExtra(StaticVarriable.CAMERA_ACTIVITY, true);
-//            startActivityForResult(cameraIntent, StaticVarriable.CAMERA_REQUEST);
+            Intent cameraIntent = new Intent(SellProductActivity.this, CameraActivity.class);
+            cameraIntent.putExtra(StaticVarriable.CAMERA_ACTIVITY, true);
+            startActivityForResult(cameraIntent, StaticVarriable.CAMERA_REQUEST);
             break;
         case R.id.exhibitLayout:
             Intent exhibitIntent = new Intent(SellProductActivity.this, ExhibitActiviy.class);
@@ -74,17 +75,8 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
         switch (requestCode) {
         case StaticVarriable.CAMERA_REQUEST:
             if (resultCode == Activity.RESULT_OK) {
-//                byte[] bytes = getIntent().getByteArrayExtra(StaticVarriable.IMAGE_RETURN);
-//                Bitmap bitmapReturn = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-//                bitmaps.add(bitmapReturn);
-//                imageAdapter.notifyDataSetChanged();
-//                for (int i = 0; i < bitmaps.size(); i++) {
-//                    Log.e("gdas3", bitmaps.get(i).toString());
-//                }
-//                Log.e("123réult", bytes.toString());
-                byte[] bytes = App.getInstance().getCapturedPhotoData();
-                Bitmap bitmapReturn = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-                bitmaps.add(bitmapReturn);
+                File file = (File) getIntent().getExtras().get(StaticVarriable.IMAGE_RETURN);
+                files.add(file);
                 imageAdapter.notifyDataSetChanged();
             }
             break;
@@ -103,40 +95,35 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
             }
             break;
         }
-
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sell_product);
-        data = getIntent().getByteArrayExtra(StaticVarriable.IMAGE);
-        bitmap = BitmapFactory.decodeByteArray(data, 0, data.length);
-        bitmaps = new ArrayList<>();
-        bitmaps.add(bitmap);
+
+        File file = (File) getIntent().getExtras().get("image");
+        files = new ArrayList<>();
+        files.add(file);
         init();
-
-
     }
 
-    private Bitmap bitmap;
     private RecyclerView imageRecyclerView;
     private ImageAdapter imageAdapter;
-    private ArrayList<Bitmap> bitmaps;
     private ImageView addImage;
     private TextView exhibitText;
     private TextView statusText;
     private LinearLayout exhibitLayout;
     private LinearLayout statusLayout;
-    private byte[] data;
     private ImageView backIcon;
+    private ArrayList<File> files;
 
 
     private void init() {
         imageRecyclerView = findViewById(R.id.imageRecyclerView);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         imageRecyclerView.setLayoutManager(layoutManager);
-        imageAdapter = new ImageAdapter(this, bitmaps);
+        imageAdapter = new ImageAdapter(this, files);
         imageRecyclerView.setAdapter(imageAdapter);
 
         this.addImage = findViewById(R.id.addImage);

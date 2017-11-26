@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.example.levanhao.splashapp.R;
+import com.example.levanhao.splashapp.StaticVarriable;
 
+import java.io.File;
 import java.lang.annotation.Target;
 import java.util.ArrayList;
 
@@ -20,11 +23,11 @@ import java.util.ArrayList;
 
 public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MyViewHolder> {
     private Context context;
-    private ArrayList<Bitmap> bitmaps;
+    private ArrayList<File> files;
 
-    public ImageAdapter(Context context, ArrayList<Bitmap> bitmaps) {
+    public ImageAdapter(Context context, ArrayList<File> files) {
         this.context = context;
-        this.bitmaps = bitmaps;
+        this.files = files;
     }
 
     @Override
@@ -36,14 +39,18 @@ public class ImageAdapter extends RecyclerView.Adapter<ImageAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
-        Bitmap bitmap = bitmaps.get(position);
-        holder.image.setImageBitmap(bitmap);
+        File file = files.get(position);
+        Glide.with(context)
+                .load(file)
+                .placeholder(R.drawable.no_image)
+                .error(R.drawable.no_image)
+                .into(holder.image);
 
     }
 
     @Override
     public int getItemCount() {
-        return bitmaps.size();
+        return files.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
