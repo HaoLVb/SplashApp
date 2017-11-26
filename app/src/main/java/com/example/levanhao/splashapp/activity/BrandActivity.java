@@ -81,7 +81,7 @@ public class BrandActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(View view, int position) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra(StaticVarriable.BRAND_STRING, brands.get(position).getBrand_name());
+                returnIntent.putExtra(StaticVarriable.BRAND_STRING, brands.get(position));
                 setResult(Activity.RESULT_OK, returnIntent);
                 onBackPressed();
             }

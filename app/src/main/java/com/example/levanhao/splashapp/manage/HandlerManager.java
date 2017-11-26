@@ -30,6 +30,7 @@ public class HandlerManager {
 
         this.sizeHandler = null;
         this.brandHandler = null;
+        this.searchHandler=null;
     }
 
     public void sendMessage(Handler handler, int what, Object object) {
@@ -202,6 +203,14 @@ public class HandlerManager {
         this.brandHandler = brandHandler;
     }
 
+    public Handler getSearchHandler() {
+        return searchHandler;
+    }
+
+    public void setSearchHandler(Handler searchHandler) {
+        this.searchHandler = searchHandler;
+    }
+
     private Handler mainHomeHandler;
     private Handler mainHandler;
     private Handler loginHandler;
@@ -223,5 +232,6 @@ public class HandlerManager {
 
     private Handler sizeHandler;
     private Handler brandHandler;
+    private Handler searchHandler;
 
 }

@@ -60,6 +60,7 @@ public class StaticVarriable {
     public static final int SEND_REPORT = 216;
     public static final int GET_SIZE = 217;
     public static final int GET_BRAND = 218;
+    public static final int SEARCH = 219;
     public static final int NOT_VALIDATE = 9995;
 
     //hanlder:
@@ -78,7 +79,7 @@ public class StaticVarriable {
 
     public static int BE_AN = 1;
     public static int BE_MAC = 2;
-    public static int BE_NGU= 3;
+    public static int BE_NGU = 3;
     public static int BE_TAM = 4;
 
 

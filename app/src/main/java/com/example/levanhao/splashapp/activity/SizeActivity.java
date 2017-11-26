@@ -86,7 +86,7 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view, int position) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra(StaticVarriable.SIZE_STRING, sizeItems.get(position).getSize_name());
+                returnIntent.putExtra(StaticVarriable.SIZE_STRING, sizeItems.get(position));
                 setResult(Activity.RESULT_OK, returnIntent);
                 onBackPressed();
             }

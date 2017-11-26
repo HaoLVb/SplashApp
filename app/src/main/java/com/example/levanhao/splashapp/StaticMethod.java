@@ -8,6 +8,7 @@ import android.widget.EditText;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -70,6 +71,16 @@ public class StaticMethod {
         return formatter.format(Double.parseDouble(price)) + " VNĐ";
     }
 
+
+    public static String[] formatVNĐ(String[] pk) {
+        String[] formatPrice = new String[12];
+        for (int i = 0; i < pk.length; i++) {
+            formatPrice[i] = formatPrice(pk[i]);
+        }
+        return formatPrice;
+    }
+
+
     public static String formatPriceGird(String price) {
         String fomat = "";
         int cost = Integer.parseInt(price);
@@ -89,4 +100,5 @@ public class StaticMethod {
         LoginHelper helper = new LoginHelper(context);
         return helper.getUser() != null;
     }
+
 }

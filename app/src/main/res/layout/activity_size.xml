@@ -48,9 +48,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:refreshEnabled="true"
-                app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header">
+                android:layout_height="match_parent">
 
             </android.support.v7.widget.RecyclerView>
 

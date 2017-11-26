@@ -183,6 +183,39 @@ public class RequestManager {
         volleyRequest(url, params, StaticVarriable.GET_BRAND, handler);
     }
 
+    public void searchProducts(/*String token, String keyword, int category_id, int brand_id, int product_size_id, int price_min, int price_max, String condition, int index, int count,*/ Handler handler) {
+        String url = StaticVarriable.DOMAIN + "/search?keyword=sản&index=0&count=5";
+        Map<String, String> params = new HashMap<>();
+//        if (token != null && token.length() > 0) {
+//            params.put("token", token);
+//        }
+//        if (keyword != null && keyword.length() > 0) {
+//            params.put("keyword", keyword);
+//        }
+//        if (brand_id != 0) {
+//            params.put("brand_id", String.valueOf(brand_id));
+//        }
+//        if (category_id != 0) {
+//            params.put("category_id", String.valueOf(category_id));
+//        }
+//        if (product_size_id != 0) {
+//            params.put("product_size_id", String.valueOf(product_size_id));
+//        }
+//        if (price_min != 0) {
+//            params.put("price_min", String.valueOf(price_min));
+//        }
+//        if (price_max != 0) {
+//            params.put("price_max", String.valueOf(price_max));
+//        }
+//        if (!condition.equals("Tất cả")) {
+//            params.put("condition", condition);
+//        }
+//        params.put("index", String.valueOf(index));
+//        params.put("count", String.valueOf(count));
+
+        volleyRequest(url, params, StaticVarriable.SEARCH, handler);
+    }
+
 
     void volleyRequest(String url, Map<String, String> params, final int message, final Handler handler) {
         Log.e("request", url + params.toString());
@@ -390,6 +423,17 @@ public class RequestManager {
                     brandMessage.what = StaticVarriable.GET_BRAND;
                 }
                 handler.sendMessage(brandMessage);
+                break;
+            case StaticVarriable.SEARCH:
+                Message searchMessage = handler.obtainMessage();
+                searchMessage.what = code;
+                if (code == 1000) {
+                    JSONArray jsonArray;
+                    jsonArray = jsonObject.getJSONArray("data");
+                    searchMessage.obj = jsonArray;
+                    searchMessage.what = StaticVarriable.SEARCH;
+                }
+                handler.sendMessage(searchMessage);
                 break;
 
             default:

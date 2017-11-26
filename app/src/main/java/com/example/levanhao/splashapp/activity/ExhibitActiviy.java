@@ -39,7 +39,7 @@ public class ExhibitActiviy extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_activiy);
-        add = getIntent().getBooleanExtra(StaticVarriable.EXHIBIT_BOOLEAN, false);
+//        add = getIntent().getBooleanExtra(StaticVarriable.EXHIBIT_BOOLEAN, false);
         initArray();
         init();
     }
@@ -48,7 +48,6 @@ public class ExhibitActiviy extends AppCompatActivity implements View.OnClickLis
     private ArrayList<ExhibitItem> exhibitItems;
     private ExhibitAdapter exhibitAdapter;
     private ImageView backIcon;
-    private boolean add;
 
     private void initArray() {
         exhibitItems = new ArrayList<>();
@@ -73,7 +72,7 @@ public class ExhibitActiviy extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view, int position) {
                 Intent returnIntent = new Intent();
-                returnIntent.putExtra(StaticVarriable.EXHIBIT_STRING, exhibitItems.get(position).getName());
+                returnIntent.putExtra(StaticVarriable.EXHIBIT_STRING, exhibitItems.get(position));
                 setResult(Activity.RESULT_OK, returnIntent);
                 onBackPressed();
             }
