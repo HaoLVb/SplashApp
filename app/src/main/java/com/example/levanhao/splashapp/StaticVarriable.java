@@ -13,6 +13,14 @@ import android.view.animation.TranslateAnimation;
  */
 
 public class StaticVarriable {
+
+    //push notification:
+    //String app_server_url_insert = "http://192.168.1.87/push/fcm_insert.php";
+    String app_server_url_insert = IP_SERVER + "/push/fcm_insert.php";
+    // String app_server_url_notification = "http://192.168.1.87/push/send_notification.php";
+    String app_server_url_notification = IP_SERVER + "/push/send_notification.php";
+
+
     public static String PRODUCT_ITEM = "PRODUCT_ITEM";
     public static String IMAGE_URI = "IMAGE_URI";
     public static String IMAGE = "IMAGE";
@@ -34,7 +42,9 @@ public class StaticVarriable {
     public static final String SIZE_STRING = "SIZE_STRING";
     public static final String BRAND_STRING = "BRAND_STRING";
 
-    public static String DOMAIN = "http://192.168.0.102:9000";
+    public static String IP_SERVER = "http://192.168.1.92";
+    //    public static String DOMAIN = "http://192.168.43.53:9000";
+    public static String DOMAIN = IP_SERVER + ":9000";
     //code API:
     public static final int ERROR_INTERNET = 203;
     //login
@@ -63,6 +73,8 @@ public class StaticVarriable {
     public static final int SEARCH = 219;
     public static final int ADD_PRODUCT = 220;
     public static final int GET_LIST_CAMPAIGN_PROODUCT = 221;
+    public static final int REGISTER_NOTIFICATION = 222;
+    public static final int PUSH_NOTIFICATION = 223;
     public static final int NOT_VALIDATE = 9995;
 
     //hanlder:

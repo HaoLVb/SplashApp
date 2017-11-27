@@ -13,11 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.CommentAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.view.customview.HRecycleView;
 import com.example.levanhao.splashapp.model.product.CommentItem;
 
@@ -112,6 +114,18 @@ public class CommentActivity extends AppCompatActivity implements View.OnClickLi
                 StaticMethod.hideKeyboard(CommentActivity.this);
                 break;
             case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(CommentActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(CommentActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(CommentActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
+                break;
             default:
                 break;
             }

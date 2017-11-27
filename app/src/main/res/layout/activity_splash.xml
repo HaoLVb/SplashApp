@@ -50,8 +50,6 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
-
             <com.example.levanhao.splashapp.view.customview.tutorial.MotionTextView
                 android:id="@+id/second_page_text"
                 android:layout_width="match_parent"

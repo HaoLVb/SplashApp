@@ -15,12 +15,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.activity.DetailProductActivity;
 import com.example.levanhao.splashapp.activity.LoginActivity;
 import com.example.levanhao.splashapp.activity.MainActivity;
+import com.example.levanhao.splashapp.activity.UserInfoActivity;
 import com.example.levanhao.splashapp.adapter.FavoriteAdapter;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.view.customview.DividerItemDecoration;
 import com.example.levanhao.splashapp.view.customview.RecyclerTouchListener;
 import com.example.levanhao.splashapp.model.ProductItem;
@@ -111,8 +114,21 @@ public class FavoriteFragment extends Fragment {
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
                         LoginActivity.systemManager.getHandlerManager().getMainHandler(),
                         StaticVarriable.HIDE_LOADING);
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(getActivity(), "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
                 break;
-
+            case StaticVarriable.NOT_VALIDATE:
+                LoginActivity.systemManager.getHandlerManager().sendMessage(
+                        LoginActivity.systemManager.getHandlerManager().getMainHandler(),
+                        StaticVarriable.HIDE_LOADING);
+                LoginHelper loginHelper = new LoginHelper(context);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(context, LoginActivity.class);
+                startActivity(validateiIntent);
+                getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                getActivity().finish();
+                break;
             default:
                 break;
             }

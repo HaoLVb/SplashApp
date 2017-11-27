@@ -16,12 +16,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.ExhibitAdapter;
 import com.example.levanhao.splashapp.adapter.SizeAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.model.product.CommentItem;
 import com.example.levanhao.splashapp.model.product.Size;
 import com.example.levanhao.splashapp.view.customview.DividerItemDecoration;
@@ -124,6 +126,20 @@ public class SizeActivity extends AppCompatActivity implements View.OnClickListe
             case StaticVarriable.GET_SIZE:
                 JSONArray jsonArray = (JSONArray) msg.obj;
                 loadSize(jsonArray);
+                break;
+            case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(SizeActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(SizeActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(SizeActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
+                break;
             default:
                 break;
             }

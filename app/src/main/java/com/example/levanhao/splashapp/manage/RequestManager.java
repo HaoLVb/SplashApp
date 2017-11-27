@@ -1,6 +1,7 @@
 package com.example.levanhao.splashapp.manage;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 
 import org.json.JSONArray;
@@ -29,9 +31,11 @@ import java.util.Map;
 
 public class RequestManager {
     private RequestQueue requestQueue;
+    private Context context;
 
     public RequestManager(Context context) {
         requestQueue = Volley.newRequestQueue(context);
+        this.context = context;
     }
 
     public void login(String phonenumber, String password, Handler handler) {
@@ -246,6 +250,26 @@ public class RequestManager {
         params.put("product_id", String.valueOf(productId));
 
         volleyRequest(url, params, StaticVarriable.SEND_REPORT, handler);
+    }
+
+    public void notificationRegiter(int userId, Handler handler) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences(context.getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(context.getString(R.string.FCM_TOKEN), "");
+        String url = StaticVarriable.IP_SERVER + "/push/fcm_insert.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("fcm_token", token);
+        params.put("user_id", String.valueOf(userId));
+        volleyRequest(url, params, StaticVarriable.REGISTER_NOTIFICATION, handler);
+    }
+
+    public void pushNotification(int userIdReceive, String title, String message, Handler handler) {
+        String url = StaticVarriable.IP_SERVER + "/push/send_notification.php";
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", String.valueOf(userIdReceive));
+        params.put("title", title);
+        params.put("message", message);
+        volleyRequest(url, params, StaticVarriable.PUSH_NOTIFICATION, handler);
+
     }
 
     void volleyRequest(String url, Map<String, String> params, final int message, final Handler handler) {
@@ -486,7 +510,12 @@ public class RequestManager {
                 }
                 handler.sendMessage(addProductMessage);
                 break;
-
+            case StaticVarriable.REGISTER_NOTIFICATION:
+                Log.e("notification", jsonObject.toString());
+                break;
+            case StaticVarriable.PUSH_NOTIFICATION:
+                Log.e("notification", "push_success");
+                break;
             default:
                 break;
             }

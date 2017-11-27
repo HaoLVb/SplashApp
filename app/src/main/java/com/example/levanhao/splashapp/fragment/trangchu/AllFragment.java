@@ -38,6 +38,7 @@ import com.example.levanhao.splashapp.activity.MainActivity;
 import com.example.levanhao.splashapp.adapter.GirdProductAdapter;
 import com.example.levanhao.splashapp.adapter.ListProductAdapter;
 import com.example.levanhao.splashapp.anim.viewflipper.AnimationFactory;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.interfaces.OnClickViewListener;
 import com.example.levanhao.splashapp.view.customview.ClassicRefreshHeaderView;
 import com.example.levanhao.splashapp.view.customview.DensityUtils;
@@ -468,11 +469,15 @@ public class AllFragment extends Fragment implements OnClickViewListener {
                 AnimationFactory.flipTransition(viewFlipper, AnimationFactory.FlipDirection.RIGHT_LEFT);
                 break;
             case StaticVarriable.NOT_VALIDATE:
+                ViewDialogForNotification validteDialog = new ViewDialogForNotification();
+                validteDialog.showDialog(getActivity(), "Thông báo", "Có ai đó đã đăng nhập vào tài khoản của bạn từ một thiết bị khác", R.drawable.tick_box_icon);
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
                         LoginActivity.systemManager.getHandlerManager().getMainHandler(),
                         StaticVarriable.HIDE_LOADING);
                 break;
             case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(getActivity(), "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
                 LoginActivity.systemManager.getHandlerManager().sendMessage(
                         LoginActivity.systemManager.getHandlerManager().getMainHandler(),
                         StaticVarriable.ERROR_INTERNET);

@@ -1,7 +1,9 @@
 package com.example.levanhao.splashapp.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.net.Uri;
 import android.os.Handler;
@@ -16,6 +18,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -127,6 +130,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 //add user information vào db (đảm bảo luôn chỉ có 1 user)
                 loginHelper.deleteUser();
                 loginHelper.addUser(userInformationModel);
+
+//                LoginActivity.requestManager.notificationRegiter(userInformationModel.getId(), loginHandler);
+                registerNotification(userInformationModel.getId());//đây là hàm khi login success
+                Log.e("notification", String.valueOf(userInformationModel.getId()));
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
@@ -135,11 +142,48 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 dialog.showDialog(LoginActivity.this, "Thông báo", "Số điện thoại hoặc mật khẩu không đúng. Vui lòng nhập lại", R.drawable.tick_box_icon);
                 break;
             case StaticVarriable.ERROR_INTERNET:
+//                ViewDialogForNotification dialog = new ViewDialogForNotification();
+//                dialog.showDialog(LoginActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
                 break;
+            case StaticVarriable.NOT_VALIDATE:
+//                ViewDialogForNotification validteDialog = new ViewDialogForNotification();
+//                validteDialog.showDialog(LoginActivity.this, "Thông báo", "Có ai đó đã đăng nhập vào tài khoản của bạn từ một thiết bị khác", R.drawable.tick_box_icon);
+                break;
+
             default:
                 break;
             }
         }
+    }
+
+    private void registerNotification(int userId) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.FCM_PREF), Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(getString(R.string.FCM_TOKEN), "");
+        String url = StaticVarriable.IP_SERVER + "/push/fcm_insert.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("123", response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("fcm_token", token);
+                params.put("user_id", String.valueOf(userId));
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
+        Log.e("123", url);
+
     }
 
     @Override

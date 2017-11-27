@@ -20,9 +20,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.ImageAdapter;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.model.ExhibitItem;
 
 import org.json.JSONObject;
@@ -191,6 +193,17 @@ public class SellProductActivity extends AppCompatActivity implements View.OnCli
                 Log.e("addproduct", jsonObject.toString());
                 break;
             case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(SellProductActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(SellProductActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(SellProductActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
                 break;
             default:
                 break;

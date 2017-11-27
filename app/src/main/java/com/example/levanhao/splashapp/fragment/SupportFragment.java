@@ -15,8 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.levanhao.splashapp.R;
-import com.example.levanhao.splashapp.activity.MainActivity;
-import com.example.levanhao.splashapp.fragment.splash.MainFragment;
 
 /**
  * A simple {@link Fragment} subclass.

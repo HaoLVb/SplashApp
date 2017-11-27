@@ -168,6 +168,19 @@ public class ReportActivity extends AppCompatActivity implements View.OnClickLis
                     }
                 }, 2000);
                 break;
+            case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification errorDialog = new ViewDialogForNotification();
+                errorDialog.showDialog(ReportActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(ReportActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(ReportActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
+                break;
             default:
                 break;
             }

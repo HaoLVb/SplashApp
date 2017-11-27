@@ -87,5 +87,8 @@
     <string name="startup_tutorial_page2">Tiện lợi - Không lo tìm người vận chuyển,\nthu tiền, xác nhận đơn hàng.</string>
     <string name="startup_tutorial_page3">Đảm bảo thanh toán.\nGiảm thiểu rủi ro lừa đảo.</string>
 
+    <string name="FCM_PREF">com.example.levanhao.splashapp.fcm_pref</string>
+    <string name="FCM_TOKEN">com.example.levanhao.splashapp.fcm_token</string>
+
 
 </resources>

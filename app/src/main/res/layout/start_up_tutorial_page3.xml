@@ -39,7 +39,7 @@
             android:layout_marginBottom="110dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="50dp"
             android:gravity="center_horizontal"
             android:maxLines="2"
             android:textColor="@color/black"

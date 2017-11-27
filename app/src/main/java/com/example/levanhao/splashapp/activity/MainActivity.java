@@ -666,6 +666,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
+            vloading.setVisibility(View.GONE);
             switch (msg.what) {
             case StaticVarriable.SCROLL_TOP:
                 hideViews();
@@ -677,23 +678,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 vloading.setVisibility(View.GONE);
                 break;
             case StaticVarriable.LOGOUT:
-                LoginHelper loginHelper = new LoginHelper(MainActivity.this);
+                final LoginHelper loginHelper = new LoginHelper(MainActivity.this);
                 loginHelper.deleteUser();
                 loginHelper.deleteLogin();
                 Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
                 break;
-            case StaticVarriable.ERROR_INTERNET:
-                vloading.setVisibility(View.GONE);
-                ViewDialogForNotification dialog = new ViewDialogForNotification();
-                dialog.showDialog(MainActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
-                break;
             case StaticVarriable.SHOW_LOADING:
                 vloading.setVisibility(View.VISIBLE);
                 break;
             case StaticVarriable.HIDE_LOADING:
                 vloading.setVisibility(View.GONE);
+                break;
+            case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(MainActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper helper = new LoginHelper(MainActivity.this);
+                helper.deleteLogin();
+                helper.deleteUser();
+                Intent validateiIntent = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
                 break;
             default:
                 break;

@@ -1,7 +1,9 @@
 package com.example.levanhao.splashapp.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.os.Handler;
@@ -22,8 +24,16 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
@@ -42,6 +52,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -359,10 +371,22 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                pushNotification(productItem.getSeller().getId(), "Moki", productItem.getSeller().getName() + " đã thích sản phẩm của bạn");
+                Log.e("notification", "userId" + productItem.getSeller().getId());
+// LoginActivity.requestManager.pushNotification(productItem.getSeller().getId(), "Moki", productItem.getSeller().getName() + " đã thích sản phẩm của bạn", deatailHandler);
                 break;
             case StaticVarriable.ERROR_INTERNET:
                 ViewDialogForNotification dialog = new ViewDialogForNotification();
                 dialog.showDialog(DetailProductActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(DetailProductActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(DetailProductActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
                 break;
             default:
                 break;
@@ -388,5 +412,32 @@ public class DetailProductActivity extends AppCompatActivity implements View.OnC
             commentButton.setText("Trở thành người bình luận đầu tiên");
         }
         commentAdapter.notifyDataSetChanged();
+    }
+
+    private void pushNotification(int userIdReceive, String title, String message) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        String url = StaticVarriable.IP_SERVER + "/push/send_notification.php";
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e("123", response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("user_id", String.valueOf(userIdReceive));
+                params.put("title", title);
+                params.put("message", message);
+                return params;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 }

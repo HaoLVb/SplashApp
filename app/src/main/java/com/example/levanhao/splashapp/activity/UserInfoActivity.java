@@ -17,10 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.ViewPagerAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.fragment.BlankFragment;
 import com.example.levanhao.splashapp.fragment.user.FollowingFragment;
 import com.example.levanhao.splashapp.fragment.user.ListFollowedFragment;
@@ -159,6 +161,19 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
             case StaticVarriable.GET_USER_INFO:
                 userInfoPage = new UserInfoPage((JSONObject) msg.obj);
                 updateUI();
+                break;
+            case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(UserInfoActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(UserInfoActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(UserInfoActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
                 break;
             default:
                 break;

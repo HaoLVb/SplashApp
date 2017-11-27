@@ -13,10 +13,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.BrandAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.model.product.Brand;
 import com.example.levanhao.splashapp.model.product.Size;
 import com.example.levanhao.splashapp.view.customview.DividerItemDecoration;
@@ -119,6 +121,20 @@ public class BrandActivity extends AppCompatActivity implements View.OnClickList
             case StaticVarriable.GET_BRAND:
                 JSONArray jsonArray = (JSONArray) msg.obj;
                 loadBrand(jsonArray);
+                break;
+            case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(BrandActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(BrandActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(BrandActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
+                break;
             default:
                 break;
             }

@@ -21,6 +21,7 @@ import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.GirdProductAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.interfaces.OnItemClickListener;
 import com.example.levanhao.splashapp.model.ProductItem;
 import com.example.levanhao.splashapp.model.UserInfoPage;
@@ -113,6 +114,17 @@ public class CategoryActivity extends AppCompatActivity {
                 break;
             case StaticVarriable.ERROR_INTERNET:
                 recyclerView.setRefreshing(false);
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(CategoryActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(CategoryActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(CategoryActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
                 break;
             default:
                 break;

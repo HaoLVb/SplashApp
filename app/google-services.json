@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "417161802352",
+    "firebase_url": "https://moki-nhom7.firebaseio.com",
+    "project_id": "moki-nhom7",
+    "storage_bucket": "moki-nhom7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:417161802352:android:acb33471794f9c3c",
+        "android_client_info": {
+          "package_name": "com.example.levanhao.splashapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "417161802352-d0kmefck91ogkpjevu09ak4teko2i2av.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9bu6tvRufMeOown80RdMu6s4b80d6N44"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.activity.LoginActivity;
 import com.example.levanhao.splashapp.activity.MainActivity;
 import com.example.levanhao.splashapp.activity.UserInfoActivity;
 import com.example.levanhao.splashapp.adapter.FollowAdapter;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.view.customview.RecyclerTouchListener;
 import com.example.levanhao.splashapp.model.UserItemFollowModel;
 
@@ -109,6 +111,17 @@ public class FollowingFragment extends Fragment {
 
                 break;
             case StaticVarriable.ERROR_INTERNET:
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(getActivity(), "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(context);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(context, LoginActivity.class);
+                startActivity(validateiIntent);
+                getActivity().overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                getActivity().finish();
                 break;
 
             default:

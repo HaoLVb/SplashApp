@@ -22,11 +22,13 @@ import android.widget.TextView;
 
 import com.aspsine.irecyclerview.IRecyclerView;
 import com.aspsine.irecyclerview.OnRefreshListener;
+import com.example.levanhao.splashapp.LoginHelper;
 import com.example.levanhao.splashapp.R;
 import com.example.levanhao.splashapp.StaticMethod;
 import com.example.levanhao.splashapp.StaticVarriable;
 import com.example.levanhao.splashapp.adapter.GirdProductAdapter;
 import com.example.levanhao.splashapp.anim.ViewLoading;
+import com.example.levanhao.splashapp.dialog.ViewDialogForNotification;
 import com.example.levanhao.splashapp.interfaces.OnItemClickListener;
 import com.example.levanhao.splashapp.model.ExhibitItem;
 import com.example.levanhao.splashapp.model.ProductItem;
@@ -330,6 +332,17 @@ public class SearchActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case StaticVarriable.ERROR_INTERNET:
                 recyclerView.setRefreshing(false);
+                ViewDialogForNotification dialog = new ViewDialogForNotification();
+                dialog.showDialog(SearchActivity.this, "Thông báo", "Kiểm tra kết nối internet", R.drawable.tick_box_icon);
+                break;
+            case StaticVarriable.NOT_VALIDATE:
+                LoginHelper loginHelper = new LoginHelper(SearchActivity.this);
+                loginHelper.deleteLogin();
+                loginHelper.deleteUser();
+                Intent validateiIntent = new Intent(SearchActivity.this, LoginActivity.class);
+                startActivity(validateiIntent);
+                overridePendingTransition(R.anim.trans_left_in, R.anim.hold);
+                finish();
                 break;
             default:
                 break;
